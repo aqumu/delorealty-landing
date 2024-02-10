@@ -3,13 +3,8 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,84 +13,144 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.fancy-underline:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transform-origin: bottom right;
+  transition: transform 0.15s ease-out;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.fancy-underline:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.fancy-width {
+  width: min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22))
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+@media (min-width: 710px) {
+  .fancy-width-resp {
+    width: min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22));
+  }
+  .fancy-gap-resp {
+    gap: calc(100vw - min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22)));
+  }
+  .resp-w-\[90\%\] {
+    width: 90%;
+  }
+  .resp-h-\[576px\] {
+    height: 576px;
+  }
+  .gallery-1, .gallery-2, .gallery-3 {
+    border-radius: 10px;
+    margin-left: calc(calc(100vw - min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22))) / 2);
+    margin-right: calc(calc(100vw - min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22))) / 2);
+  }
+
 }
 
-.card {
-  padding: 2em;
+.notshown {
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 0.5s
 }
 
-.read-the-docs {
-  color: #888;
+.slide-left {
+  transform: translate(-5vw, 0);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.slide-up {
+  transform: translate(0, 10vh);
+}
+
+@media(prefers-reduced-motion) {
+  .notshown {
+    transition: none;
+  }
+}
+
+.shown {
+  opacity: 1;
+  filter: none;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+.gallery-1, .gallery-2, .gallery-3 {
+  height: 100%;
+  width: 100%;
+}
+
+.gallery-1 {
+  background-image: linear-gradient(-45deg, grey, sienna);
+  }
+
+.gallery-2 {
+  background-image: linear-gradient(-45deg, #72eadf, #939393)
+}
+
+.gallery-3 {
+  background-image: linear-gradient(-45deg, #a7de84, #abffef);
+}
+
+.gallery-remote, .play-pause {
+  backdrop-filter: blur(7px);
+  background-color: rgba(209 213 219 / 0.7);
+}
+
+.gallery-remote-outer {
+  transform: translate(0, 0) scale(0);
+  transition: transform 0.5s;
+  animation-timing-function: linear;
+  position: sticky;
+  bottom: 30px;
+}
+
+.dot {
+  flex-grow: 0.001;
+  transition: all 250ms linear;
+  position: relative;
+}
+
+.dot::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  bottom: -8px;
+  right: -8px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+progress {
+  height: 0.75rem !important;
+  vertical-align: top;
+}
+
+.gallery-remote > .grow {
+  flex-grow: 1 !important;
+  background-color: rgb(156 163 176 / 100% );
+}
+
+.gallery-remote > .grow > progress {
+  cursor: default;
+}
+
+.svg-icon {
+  display: none;
+  fill: #303030;
+}
+
+.play-pause > .block {
+  display: block !important;
+}
+
+.gallery-outer {
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
