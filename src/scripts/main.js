@@ -23,11 +23,12 @@ const observer = new IntersectionObserver((entries) => {
 
 const remoteObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && pauseIcon.classList.contains('block')) {
             entry.target.classList.add('shown');
             id = setInterval(moveProgress, timeout, bars[currentProgress]);
+        } else if (entry.isIntersecting) {
+            entry.target.classList.add('shown');
         } else {
-            // entry.target.classList.remove('shown');
             clearInterval(id);
             id = 0;
         }
@@ -41,15 +42,15 @@ function moveProgress(Bar) {
     } else if (currentProgress < 2) {
         clearInterval(id);
         id = 0;
-        const currentDot = dots[currentProgress];
+        let currentDot = dots[currentProgress];
         bars[currentProgress].value = 0;
         currentProgress++;
 
-        const targetDot = dots[currentProgress];
+        let targetDot = dots[currentProgress];
         currentDot.classList.remove('grow');
         targetDot.classList.add('grow');
 
-        galleryOuter.style.transform = 'translateX(' + targetDot.dataset.id * -100 + 'vw)';
+        galleryOuter.style.transform = 'translateX(' + targetDot.dataset.id * -33.3333 + '%)';
 
         id = setInterval(moveProgress, timeout, bars[currentProgress]);
     } else {
@@ -74,7 +75,7 @@ galleryRemote.addEventListener('click', e => {
         bars[currentProgress].value = 0
         targetDot.classList.add('grow')
 
-        galleryOuter.style.transform = 'translateX(' + targetDot.dataset.id * -100 + 'vw)'
+        galleryOuter.style.transform = 'translateX(' + targetDot.dataset.id * -33.3333 + '%)'
         currentProgress = targetDot.dataset.id
 
         if (pauseIcon.classList.contains('block')) {
@@ -99,7 +100,7 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
         for (let i = 0; i <= 2; i++) {
             bars[i].value = 0;
         }
-        galleryOuter.style.transform = 'translateX(-100vw)';
+        galleryOuter.style.transform = 'translateX(0%)';
         dots[currentProgress].classList.remove('grow');
         currentProgress = 0;
         dots[currentProgress].classList.add('grow');

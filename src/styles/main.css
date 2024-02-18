@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 400;
@@ -31,29 +35,41 @@
   transform-origin: bottom left;
 }
 
-.fancy-width {
-  width: min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22))
+.container-width {
+  width: 90%;
+  max-width: 1440px;
 }
 
-@media (min-width: 710px) {
-  .fancy-width-resp {
-    width: min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22));
-  }
-  .fancy-gap-resp {
-    gap: calc(100vw - min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22)));
-  }
-  .resp-w-\[90\%\] {
-    width: 90%;
-  }
-  .resp-h-\[576px\] {
-    height: 576px;
-  }
-  .gallery-1, .gallery-2, .gallery-3 {
-    border-radius: 10px;
-    margin-left: calc(calc(100vw - min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22))) / 2);
-    margin-right: calc(calc(100vw - min(90vw, calc(calc(min(100vw, 1440px) / 24) * 22))) / 2);
-  }
+.gallery {
+  border-radius: 0;
+  width: 100svw;
+  margin: 0;
+}
 
+@media (min-width: 768px) {
+  .container-width {
+    width: 90svw;
+    max-width: 1440px;
+  }
+  .gallery {
+    border-radius: 16px;
+    width: 90svw;
+    margin-left: 5svw;
+    margin-right: 5svw;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-width {
+    width: 85svw;
+    max-width: 1440px;
+  }
+  .gallery {
+    border-radius: 16px;
+    width: 85svw;
+    margin-left: 7.5svw;
+    margin-right: 7.5svw;
+  }
 }
 
 .notshown {
@@ -80,23 +96,6 @@
   opacity: 1;
   filter: none;
   transform: translate(0, 0) scale(1) !important;
-}
-
-.gallery-1, .gallery-2, .gallery-3 {
-  height: 100%;
-  width: 100%;
-}
-
-.gallery-1 {
-  background-image: linear-gradient(-45deg, grey, sienna);
-  }
-
-.gallery-2 {
-  background-image: linear-gradient(-45deg, #72eadf, #939393)
-}
-
-.gallery-3 {
-  background-image: linear-gradient(-45deg, #a7de84, #abffef);
 }
 
 .gallery-remote, .play-pause {
@@ -142,15 +141,14 @@ progress {
   cursor: default;
 }
 
-.svg-icon {
-  display: none;
-  fill: #303030;
-}
-
 .play-pause > .block {
   display: block !important;
 }
 
 .gallery-outer {
   transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.text-alt {
+  font-family: 'Pangolin',serif;
 }
