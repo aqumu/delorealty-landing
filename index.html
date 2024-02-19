@@ -140,8 +140,10 @@
           <span class="w-full text-center self-center text-2xl">Тыкайте на районы выбирайте может даже рисуйте и ищите недвижимость быстрее</span>
         </div>
       </div>
-      <div id="map-outer" class="md:mr-auto md:w-[50%] aspect-[409/505] cursor-pointer relative">
-        <div class="pin hidden"></div>
+      <div id="map-outer" class="md:mr-auto md:w-[50%] aspect-[413/485] cursor-pointer relative">
+        <div class="pins-outer w-full h-full relative">
+          <div class="pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full p-3 z-50"></div>
+        </div>
         <img id="map" src="/map-beta.png" class="w-[80%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-[cubic-bezier(.4,0,.3,1.01)] duration-700 mx-auto drop-shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] select-none" draggable="false" alt="Интерактивная карта">
       </div>
     </div>
