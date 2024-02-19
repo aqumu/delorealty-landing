@@ -62,12 +62,10 @@
     </div>
 
 
-    <div class="overflow-x-hidden">
-      <div class="gallery-outer w-[300svw] flex">
-        <img alt="Первая иллюстрация" src="/gallery1.png" class="gallery notshown slide-up"/>
-        <img alt="Вторая иллюстрация" src="/gallery1.png" class="gallery"/>
-        <img alt="Третья иллюстрация" src="/gallery1.png" class="gallery"/>
-      </div>
+    <div class="gallery-outer w-[300svw] flex">
+      <img alt="Первая иллюстрация" src="/gallery1.png" class="gallery notshown slide-up"/>
+      <img alt="Вторая иллюстрация" src="/gallery1.png" class="gallery"/>
+      <img alt="Третья иллюстрация" src="/gallery1.png" class="gallery"/>
     </div>
     <div class="gallery-remote-outer my-[60px] md:my-[100px] flex flex-row justify-center">
       <div class="gallery-remote flex flex-row items-center rounded-3xl w-48 h-16">
@@ -81,7 +79,7 @@
           <progress class="progress" value="0" max="100"></progress>
         </div>
       </div>
-      <div class="play-pause w-16 h-16 rounded-3xl ml-4">
+      <div class="play-pause cursor-pointer w-16 h-16 rounded-3xl ml-4">
           <svg class="hidden fill-[#303030] play-icon" viewBox="0 0 56 56">
               <path d="M20.8,36V20c0-1.6,1-2.5,2.3-2.5c0.7,0,1.1,0.1,1.7,0.5l13.4,7.7c1.2,0.7,1.8,1.2,1.8,2.3 c0,1.1-0.6,1.6-1.8,2.3L24.8,38c-0.6,0.4-1,0.5-1.7,0.5C21.8,38.5,20.8,37.6,20.8,36"></path>
           </svg>
@@ -93,7 +91,6 @@
           </svg>
       </div>
     </div>
-
 
     <div class="container-width mx-auto mb-[100px]">
       <div class="w-full block relative mb-[2.5rem] md:mb-[1.5rem] rounded-2xl">
@@ -109,7 +106,7 @@
           <span class="hidden md:block text-center leading-[2.5rem] text-2xl 2xl:leading-[3rem] 2xl:text-3xl text-alt">
             Установите свой логотип
           </span>
-          <div class="md:h-[24svw] w-[60%] md:w-auto aspect-[501/476]">
+          <div class="md:h-[24svw] md:max-h-[400px] w-[60%] md:w-auto aspect-[501/476]">
             <img alt="Меню загрузки логотипа" class="h-full rounded-lg sm:rounded-xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]" src="/pic2.png">
           </div>
           <span class="md:hidden pl-4 flex self-center text-center w-[40%] leading-[2.5rem] text-2xl text-alt">
@@ -121,7 +118,7 @@
           <span class="block w-full text-center leading-[2.5rem] text-2xl 2xl:leading-[3rem] 2xl:text-3xl text-alt">
             Используйте карточку объекта для презентации
           </span>
-          <div class="md:h-[24svw] aspect-[1104/472]">
+          <div class="md:h-[24svw] md:max-h-[400px] aspect-[1104/472]">
             <img alt="Пример карточки объекта" class="h-full rounded-lg sm:rounded-xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]" src="/pic3.png">
           </div>
         </div>
@@ -136,6 +133,18 @@
     </div>
 
 
+    <div class="container-width mx-auto md:flex flex-row pb-[100px]">
+      <div class="description md:w-[50%] flex">
+        <div class="flex flex-col self-center mb-5">
+          <span class="w-full text-center self-center text-3xl font-medium mb-5">Очень интересная интерактивная карта</span>
+          <span class="w-full text-center self-center text-2xl">Тыкайте на районы выбирайте может даже рисуйте и ищите недвижимость быстрее</span>
+        </div>
+      </div>
+      <div id="map-outer" class="md:mr-auto md:w-[50%] aspect-[409/505] cursor-pointer relative">
+        <div class="pin hidden"></div>
+        <img id="map" src="/map-beta.png" class="w-[80%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-[cubic-bezier(.4,0,.3,1.01)] duration-700 mx-auto drop-shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] select-none" draggable="false" alt="Интерактивная карта">
+      </div>
+    </div>
 
 
     <footer class="footer p-10 bg-base-200 text-base-content">

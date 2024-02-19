@@ -152,3 +152,8 @@ progress {
 .text-alt {
   font-family: 'Pangolin',serif;
 }
+
+.transformed {
+  perspective: 10px;
+  transform: translate(-50%,-50%) rotateX(55deg) rotateZ(18deg) scale(0.9);
+}

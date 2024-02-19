@@ -11,6 +11,9 @@ const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
 let id;
 let currentProgress = 0;
+const mapOuter = document.getElementById('map-outer');
+const map = document.getElementById('map');
+
 
 
 const observer = new IntersectionObserver((entries) => {
@@ -34,7 +37,6 @@ const remoteObserver = new IntersectionObserver((entries) => {
         }
     });
 });
-
 
 function moveProgress(Bar) {
     if (Bar.value < 100) {
@@ -118,3 +120,15 @@ document.addEventListener("scroll", () => {
         remoteObserver.observe(galleryRemoteOuter);
     }
 });
+
+mapOuter.onmouseover = function() {transform()}
+mapOuter.onmouseleave = function() {untransform()}
+
+function transform() {
+    map.classList.add('transformed');
+}
+
+function untransform() {
+    map.classList.remove('transformed');
+}
+
