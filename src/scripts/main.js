@@ -11,12 +11,25 @@ const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
 let id;
 let currentProgress = 0;
-const mapOuter = document.getElementById('map-outer');
-const map = document.getElementById('map');
-
-
+let svg = document.getElementById('svg');
+let path = svg.firstElementChild;
+let path2 = svg.lastElementChild;
+let pathLength = path.getTotalLength();
+let pathOffset = path.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+const mapDots = Array.from(svg.parentElement.children)
+path.style.strokeDasharray = pathLength + ' ' + pathLength;
+path.style.strokeDashoffset = pathLength;
+console.log(pathLength)
 
 const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('shown');
+        }
+    });
+});
+
+const animObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('shown');
@@ -65,7 +78,6 @@ function moveProgress(Bar) {
 }
 
 galleryRemote.addEventListener('click', e => {
-    // currentProgress = document.querySelector('.grow').dataset.id; ?????
     const currentDot = dots[currentProgress]
     const targetDot = e.target
 
@@ -114,21 +126,24 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
     }
 });
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 hiddenElements.forEach((el) => observer.observe(el));
-document.addEventListener("scroll", () => {
+document.addEventListener("scroll", async () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);
     }
+    if (window.scrollY >= pathOffset) {
+        await sleep(1000)
+        path.style.strokeDashoffset = '0';
+        await sleep(700)
+        path.style.opacity = '0';
+        path2.style.opacity = '1'
+        await sleep(350)
+        mapDots.forEach( (el) => {el.style.opacity = 1})
+    }
 });
 
-mapOuter.onmouseover = function() {transform()}
-mapOuter.onmouseleave = function() {untransform()}
 
-function transform() {
-    map.classList.add('transformed');
-}
-
-function untransform() {
-    map.classList.remove('transformed');
-}
 

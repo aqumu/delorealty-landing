@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-  display: none;
 }
 
 :root {
@@ -15,6 +14,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+.fancy-underline {
+  cursor: pointer;
+  position: relative;
 }
 
 .fancy-underline:after {
@@ -37,39 +41,56 @@
 
 .container-width {
   width: 90%;
-  max-width: 1440px;
 }
 
 .gallery {
   border-radius: 0;
   width: 100svw;
   margin: 0;
+  height: 320px;
+  display: flex;
+}
+
+.gallery > div {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 468px) {
+  .gallery {
+    height: 420px
+  }
+}
+
+@media (min-width: 640px) {
+  .gallery {
+    height: 560px
+  }
 }
 
 @media (min-width: 768px) {
-  .container-width {
-    width: 90svw;
-    max-width: 1440px;
-  }
   .gallery {
-    border-radius: 16px;
-    width: 90svw;
-    margin-left: 5svw;
-    margin-right: 5svw;
-  }
-}
+    height: 628px;
 
-@media (min-width: 768px) {
-  .container-width {
-    width: 85svw;
-    max-width: 1440px;
-  }
-  .gallery {
     border-radius: 16px;
     width: 85svw;
     margin-left: 7.5svw;
     margin-right: 7.5svw;
   }
+
+  .container-width {
+    width: 85svw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    height: 680px;
+  }
+}
+
+.gallery-outer {
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .notshown {
@@ -101,6 +122,11 @@
 .gallery-remote, .play-pause {
   backdrop-filter: blur(7px);
   background-color: rgba(209 213 219 / 0.7);
+  transition: background-color linear 100ms;
+}
+
+.play-pause:hover {
+  background-color: rgba(209 213 219 / 1);
 }
 
 .gallery-remote-outer {
@@ -128,7 +154,7 @@
 }
 
 progress {
-  height: 0.75rem !important;
+  height: 0.5rem !important;
   vertical-align: top;
 }
 
@@ -145,15 +171,24 @@ progress {
   display: block !important;
 }
 
-.gallery-outer {
-  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+.map {
+  background-image: url('/map.png');
+  background-size: cover;
+  -webkit-box-shadow: inset 0px 0px 20px 20px rgba(255,255,255,1);
+  -moz-box-shadow: inset 0px 0px 20px 20px rgba(255,255,255,1);
+  box-shadow: inset 0px 0px 20px 20px rgba(255,255,255,1);
 }
 
-.text-alt {
-  font-family: 'Pangolin',serif;
-}
-
-.transformed {
-  perspective: 10px;
-  transform: translate(-50%,-50%) rotateX(55deg) rotateZ(18deg) scale(0.9);
+.map-dot {
+  width: 2rem;
+  height: 2rem;
+  background-color: white;
+  border-radius: 100%;
+  border: #e84c05 solid 4px;
+  outline: white solid 3px;
+  outline-offset: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  opacity: 0;
 }
