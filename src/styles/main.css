@@ -16,6 +16,16 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.nav {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 500;
+}
+
 .fancy-underline {
   cursor: pointer;
   position: relative;
@@ -37,6 +47,26 @@
 .fancy-underline:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.fancy-button {
+  height: 50px;
+  width: 160px;
+  clip-path: path("M 0 25 C 0 -5, -5 0, 80 0 S 160 -5, 160 25, 165 50 80 50, 0 55, 0 25");
+  border: none;
+  border-radius: 13px;
+  background-color: white;
+  box-shadow: 0px -3px 15px 0px #FF3f02 inset;
+  color: var(--primaryFg);
+  font-family: "Manrope";
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translateY(0px);
+  transition: all 0.2s ease;
 }
 
 .container-width {
@@ -188,7 +218,23 @@ progress {
   outline: white solid 3px;
   outline-offset: 0;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0);
   display: flex;
   opacity: 0;
+  transition: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 700ms;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.text-md {
+  font-size: 1.05rem;
+  line-height: 1.75rem;
 }

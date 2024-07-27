@@ -17,42 +17,22 @@
 
   <body>
   <script defer type="module" src="/src/scripts/main.js"></script>
-  <div class="bg-base-100 h-[94px] navbar">
-    <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
-        </svg>
-      </label>
-      <ul tabindex="0" class="z-10 bg-base-100 shadow mt-3 p-2 rounded-box w-52 text-base dropdown-content menu">
-        <li><a>Продукты</a></li>
-        <li><a>Цены</a></li>
-        <li><a>Ресурсы</a></li>
-        <li><a>Отдел продаж</a></li>
-        <li><a>Вход</a></li>
-      </ul>
-    </div>
-    <img alt="logo" src="/logo.png" class="p-4 lg:p-3 max-h-full"/>
-    <div class="lg:flex ml-auto text-base/8 hidden navbar-center">
-      <ul class="inline-flex flex-row py-1 p-1 text-md">
-        <li class="p-4"><a class="fancy-underline">Продукты</a></li>
-        <li class="p-4"><a class="fancy-underline">Цены</a></li>
-        <li class="p-4"><a class="fancy-underline">Ресурсы</a></li>
-        <li class="p-4"><a class="fancy-underline">О нас</a></li>
-        <li class="p-4"><a class="tracking-wider btn btn-sm">Вход</a></li>
-      </ul>
+  <div class="bg-base-100 h-[94px] navbar nav">
+    <div class="grid grid-cols-3 sm:grid-cols-4 w-full">
+      <img alt="logo" src="/logo.png" class="p-4 lg:p-3 max-h-full col-span-1"/>
+      <div class="flex flex-col col-span-2 text-center">
+        <span class="text-lg sm:text-xl lg:text-2xl font-bold">Мультилистинговая система<br/></span>
+        <span class="text-md sm:text-lg lg:text-xl mx-auto">Краснодарский край и Адыгея</span>
+      </div>
     </div>
   </div>
 
-
-  <div class="flex flex-col lg:flex-row justify-between mx-auto mt-[24px] lg:mt-[36px] mb-[48px] md:mb-[48px] lg:mb-[64px] basis-2/3 container-width notshown slide-up">
+  <div class="container-width flex flex-col lg:flex-row justify-between mx-auto mt-[24px] lg:mt-[36px] mb-[48px] md:mb-[48px] lg:mb-[64px] basis-2/3 notshown slide-up">
     <div class="mb-[36px] lg:mb-0 pr-8">
       <h1 class="h-fit">
-        <span class="font-medium text-4xl sm:text-5xl md:text-6xl lg:text-7xl">Уникальная<br/></span>
         <span class="bg-clip-text bg-gradient-to-br from-error to-success font-bold text-4xl text-transparent sm:text-5xl md:text-6xl lg:text-7xl box-decoration-slice">
-        мульти&shy;листинговая
-        <br/>система</span>
-        <span class="font-medium text-4xl sm:text-5xl md:text-6xl lg:text-7xl">. У Вас на ладони.</span>
+        Уникальная&nbsp;</span>
+        <span class="font-medium text-4xl sm:text-5xl md:text-6xl lg:text-7xl">система недвижимости. У вас на ладони.</span>
       </h1>
     </div>
     <div class="flex items-end lg:justify-end">
@@ -104,7 +84,7 @@
     </div>
   </div>
 
-  <div class="mx-auto mb-[100px] container-width">
+  <div class="container mb-[100px]">
     <div class="block relative mb-[2.5rem] md:mb-[1.5rem] rounded-2xl w-full">
         <span class="block w-full text-2xl text-center 2xl:text-3xl 2xl:leading-[3rem] mb-4">
           Укажите свое название
@@ -151,7 +131,7 @@
     </div>
   </div>
   
-  <div class="container mx-auto md:flex mb-[100px] relative">
+  <div class="container md:flex mb-[100px] relative">
     <div class="w-full md:w-2/5 flex flex-col">
       <span class=" text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-auto mb-4 mx-4 md:mr-4">Ну ооочень крутая интерактивная карта</span>
       <span class=" text-xl md:text-2xl lg:text-3xl text-center mb-6 mx-4 md:mb-auto md:mr-4">Выбирайте области поиска простым движением руки</span>
@@ -168,12 +148,11 @@
     <div class="map-bottom absolute bottom-0"></div>
   </div>
 
-  <div class="container-width flex flex-col mx-auto mb-[100px]">
+  <div class="container flex flex-col mb-[100px]">
     <span class="w-full text-2xl md:text-3xl lg:text-4xl text-center mb-[50px]">Работайте где угодно - весь функционал доступен на мобильных устройствах</span>
     <img src="/devices.png" alt="Пример сайта на смартфоне, планшете и смартфоне" class="max-h-[80vh] mx-auto"
          draggable="false">
   </div>
-
 
   <footer class="bg-base-200 p-10 text-base-content footer">
     <aside>

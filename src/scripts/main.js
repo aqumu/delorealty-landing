@@ -139,9 +139,12 @@ document.addEventListener("scroll", async () => {
         path.style.strokeDashoffset = '0';
         await sleep(700)
         path.style.opacity = '0';
-        path2.style.opacity = '1'
+        path2.style.opacity = '1';
         await sleep(350)
-        mapDots.forEach( (el) => {el.style.opacity = 1})
+        mapDots.forEach( (el) => {
+            el.style.opacity = '1';
+            el.style.transform = 'translate(-50%, -50%) scale(1)';
+        })
     }
 });
 

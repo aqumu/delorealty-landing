@@ -26,6 +26,9 @@ module.exports = {
             'roboto': ['Roboto', 'sans-serif']
           },
         },
+    container: {
+      center: true,
+    },
   },
   plugins: [require('daisyui')],
 };
