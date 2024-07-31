@@ -1,4 +1,5 @@
 const hiddenElements = document.querySelectorAll('.notshown');
+const glassyButtons = document.querySelectorAll('.glassy-button');
 const galleryOuter = document.querySelector('.gallery-outer');
 const galleryRemote = document.querySelector('.gallery-remote');
 const galleryRemoteOuter = document.querySelector('.gallery-remote-outer');
@@ -19,7 +20,19 @@ let pathOffset = path.getBoundingClientRect().bottom + window.scrollY - window.i
 const mapDots = Array.from(svg.parentElement.children)
 path.style.strokeDasharray = pathLength + ' ' + pathLength;
 path.style.strokeDashoffset = pathLength;
-console.log(pathLength)
+
+glassyButtons.forEach(button => {
+    button.addEventListener('mousemove', (event) => {
+      const centerX = button.offsetWidth / 2;
+      const centerY = button.offsetHeight / 2;
+
+      const offsetX = event.offsetX - centerX;
+      const offsetY = event.offsetY - centerY;
+
+      button.style.setProperty("--_x-motion", `${offsetX}px`);
+      button.style.setProperty("--_y-motion", `${offsetY}px`);
+    })
+})
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -137,10 +150,10 @@ document.addEventListener("scroll", async () => {
     if (window.scrollY >= pathOffset) {
         await sleep(1000)
         path.style.strokeDashoffset = '0';
-        await sleep(700)
+        await sleep(1200)
         path.style.opacity = '0';
         path2.style.opacity = '1';
-        await sleep(350)
+        await sleep(1000)
         mapDots.forEach( (el) => {
             el.style.opacity = '1';
             el.style.transform = 'translate(-50%, -50%) scale(1)';

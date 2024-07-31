@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -17,32 +17,30 @@
 
   <body>
   <script defer type="module" src="/src/scripts/main.js"></script>
-  <div class="bg-base-100 h-[94px] navbar nav">
-    <div class="grid grid-cols-3 sm:grid-cols-4 w-full">
-      <img alt="logo" src="/logo.png" class="p-4 lg:p-3 max-h-full col-span-1"/>
-      <div class="flex flex-col col-span-2 text-center">
-        <span class="text-lg sm:text-xl lg:text-2xl font-bold">Мультилистинговая система<br/></span>
-        <span class="text-md sm:text-lg lg:text-xl mx-auto">Краснодарский край и Адыгея</span>
+    <div class="bg-base-100 h-[94px] navbar nav px-0">
+      <div class="container">
+        <div class="grid grid-cols-3 sm:grid-cols-4 w-full">
+          <img alt="logo" src="/logo.png" class="max-h-full my-auto col-span-1"/>
+          <div class="flex flex-col col-span-2 text-center">
+            <span class="text-lg sm:text-xl lg:text-2xl font-bold">Мультилистинговая система<br/></span>
+            <span class="text-md sm:text-lg lg:text-xl mx-auto">Краснодарский край и Адыгея</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="container-width flex flex-col lg:flex-row justify-between mx-auto mt-[24px] lg:mt-[36px] mb-[48px] md:mb-[48px] lg:mb-[64px] basis-2/3 notshown slide-up">
-    <div class="mb-[36px] lg:mb-0 pr-8">
-      <h1 class="h-fit">
-        <span class="bg-clip-text bg-gradient-to-br from-error to-success font-bold text-4xl text-transparent sm:text-5xl md:text-6xl lg:text-7xl box-decoration-slice">
+  <div class="container flex flex-row my-12 flex-wrap notshown slide-up relative">
+    <div class="mb-5 w-full sm:w-[65%] sm:mr-[35%]">
+        <span class="bg-clip-text bg-gradient-to-br from-error to-success font-bold text-3xl text-transparent sm:text-4xl md:text-5xl lg:text-6xl box-decoration-slice">
         Уникальная&nbsp;</span>
-        <span class="font-medium text-4xl sm:text-5xl md:text-6xl lg:text-7xl">система недвижимости. У вас на ладони.</span>
-      </h1>
+        <span class="font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl">система недвижимости</span>
     </div>
-    <div class="flex items-end lg:justify-end">
-      <a href="https://delorealty.ru"
-         class="relative inline-flex p-[3px] rounded-[10px] md:rounded-[16px] w-[250px] md:w-[320px] h-12 md:h-14 overflow-hidden focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-        <span class="absolute inset-[-1000%] bg-[conic-gradient(from_90deg_at_50%_50%,#FCA700_0%,#FF3F02_20%,#FF3F02_80%,#FCA700_100%)] animate-[spin_2s_linear_infinite]"></span>
-        <span class="inline-flex items-center justify-center bg-white backdrop-blur-3xl rounded-[7px] md:rounded-[13px] w-full h-full font-bold text-md text-success md:text-xl tracking-wider cursor-pointer">
-            НАЧАТЬ ПОЛЬЗОВАТЬСЯ
-          </span>
-      </a>
+      <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-7">Гига система куда много кто может выкладывать объявления</h2>
+
+    <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl"><span>Начать <svg class="h-[20px] inline ml-1 fill-white" style="pointer-events: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span></a>
+    <div class="blob-cont">
+      <div class="yellow blob"></div>
+      <div class="red blob"></div>
     </div>
   </div>
 
@@ -131,15 +129,15 @@
     </div>
   </div>
   
-  <div class="container md:flex mb-[100px] relative">
+  <div class="container md:flex mb-[100px] relative px-0 sm:px-4">
     <div class="w-full md:w-2/5 flex flex-col">
       <span class=" text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-auto mb-4 mx-4 md:mr-4">Ну ооочень крутая интерактивная карта</span>
       <span class=" text-xl md:text-2xl lg:text-3xl text-center mb-6 mx-4 md:mb-auto md:mr-4">Выбирайте области поиска простым движением руки</span>
     </div>
     <div class="map w-full md:w-3/5 aspect-square relative rounded-2xl">
       <svg id="svg" class="absolute w-[40%] h-[40%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" width="50" height="58" viewBox="0 0 50 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="transition-all duration-700" d="M13 6C29 4.5 40.5 11 45 17.5C49.5 24 50.5 36.5 43.5 44C26.7497 61.9468 2.99999 61 1.49999 39C0.299994 21.4 16.6667 6 25 0.5" stroke="#f39000"/>
-        <path class="transition-opacity duration-700 opacity-0 stroke-[0.5]" d="M45 17.5C40.5 11 30.5 6 18.2751 5.78281C12 11.5 0.477266 24 1.49999 39C2.99999 61 26.7497 61.9468 43.5 44C50.5 36.5 49.5 24 45 17.5Z" stroke="#f39000" fill="#f39000" fill-opacity="0.25"/>
+        <path class="transition-all duration-[1200ms]" d="M13 6C29 4.5 40.5 11 45 17.5C49.5 24 50.5 36.5 43.5 44C26.7497 61.9468 2.99999 61 1.49999 39C0.299994 21.4 16.6667 6 25 0.5" stroke="#f39000"/>
+        <path class="transition-opacity duration-1000 opacity-0 stroke-[0.5]" d="M45 17.5C40.5 11 30.5 6 18.2751 5.78281C12 11.5 0.477266 24 1.49999 39C2.99999 61 26.7497 61.9468 43.5 44C50.5 36.5 49.5 24 45 17.5Z" stroke="#f39000" fill="#f39000" fill-opacity="0.25"/>
       </svg>
       <div class="map-dot top-[54%] left-[39%] transition-opacity duration-700"><p class="m-auto font-semibold text-sm">50</p></div>
       <div class="map-dot top-[46%] left-[54%] transition-opacity duration-700"><p class="m-auto font-semibold text-sm">50</p></div>
