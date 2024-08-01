@@ -10,6 +10,8 @@ const galleryRemoteOffset = galleryOuter.getBoundingClientRect().bottom + window
 const playIcon = document.querySelector('.play-icon');
 const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
+let translationOffset;
+updateGallerySize();
 let id;
 let currentProgress = 0;
 let svg = document.getElementById('svg');
@@ -20,6 +22,37 @@ let pathOffset = path.getBoundingClientRect().bottom + window.scrollY - window.i
 const mapDots = Array.from(svg.parentElement.children)
 path.style.strokeDasharray = pathLength + ' ' + pathLength;
 path.style.strokeDashoffset = pathLength;
+
+window.addEventListener('resize', () => { updateGallerySize(); });
+
+function updateGallerySize () {
+    const containerWidth = document.querySelector('.container').offsetWidth - 32
+    if (window.innerWidth > 1440) {
+        document.querySelectorAll('.gallery').forEach((el) => {
+            el.style.width = containerWidth + 'px';
+            el.style.marginLeft = 45 + 'px';
+            el.style.marginRight = 45 + 'px';
+        });
+        galleryOuter.firstElementChild.style.marginLeft = (window.innerWidth - containerWidth)/2 + 'px';
+        galleryOuter.lastElementChild.style.marginRight = (window.innerWidth - containerWidth)/2 + 'px';
+        translationOffset = containerWidth + 90;
+    } else if (window.innerWidth >= 768) {
+        document.querySelectorAll('.gallery').forEach((el) => {
+            el.style.width = containerWidth + 'px';
+            el.style.marginLeft = (window.innerWidth - containerWidth)/2 + 'px';
+            el.style.marginRight = (window.innerWidth - containerWidth)/2 + 'px';
+        });
+        translationOffset = window.innerWidth;
+    } else {
+        document.querySelectorAll('.gallery').forEach((el) => {
+            el.style.width = window.innerWidth + 'px';
+            el.style.marginLeft = '0px';
+            el.style.marginRight = '0px';
+        })
+        translationOffset = window.innerWidth;
+    }
+    console.log(translationOffset);
+}
 
 glassyButtons.forEach(button => {
     button.addEventListener('mousemove', (event) => {
@@ -35,14 +68,6 @@ glassyButtons.forEach(button => {
 })
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('shown');
-        }
-    });
-});
-
-const animObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('shown');
@@ -78,7 +103,7 @@ function moveProgress(Bar) {
         currentDot.classList.remove('grow');
         targetDot.classList.add('grow');
 
-        galleryOuter.style.transform = 'translateX(' + targetDot.dataset.id * -33.3333 + '%)';
+        galleryOuter.style.transform = 'translateX(' + (targetDot.dataset.id * translationOffset * -1) + 'px)';
 
         id = setInterval(moveProgress, timeout, bars[currentProgress]);
     } else {
@@ -102,7 +127,7 @@ galleryRemote.addEventListener('click', e => {
         bars[currentProgress].value = 0
         targetDot.classList.add('grow')
 
-        galleryOuter.style.transform = 'translateX(' + targetDot.dataset.id * -33.3333 + '%)'
+        galleryOuter.style.transform = 'translateX(' + (targetDot.dataset.id * translationOffset * -1) + 'px)'
         currentProgress = targetDot.dataset.id
 
         if (pauseIcon.classList.contains('block')) {
@@ -127,7 +152,7 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
         for (let i = 0; i <= 2; i++) {
             bars[i].value = 0;
         }
-        galleryOuter.style.transform = 'translateX(0%)';
+        galleryOuter.style.transform = 'translateX(0)';
         dots[currentProgress].classList.remove('grow');
         currentProgress = 0;
         dots[currentProgress].classList.add('grow');
@@ -142,7 +167,9 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 hiddenElements.forEach((el) => observer.observe(el));
+
 document.addEventListener("scroll", async () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);

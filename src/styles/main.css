@@ -68,6 +68,7 @@
 .blob {
   border-radius: 100px;
   filter: blur(60px);
+  z-index: -3;
 }
 
 .yellow {
@@ -217,7 +218,6 @@
 
 .gallery {
   border-radius: 0;
-  width: 100svw;
   margin: 0;
   height: 320px;
   display: flex;
@@ -243,11 +243,7 @@
 @media (min-width: 768px) {
   .gallery {
     height: 628px;
-
     border-radius: 16px;
-    width: 85svw;
-    margin-left: 7.5svw;
-    margin-right: 7.5svw;
   }
 
   .container-width {
