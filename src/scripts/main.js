@@ -51,7 +51,6 @@ function updateGallerySize () {
         })
         translationOffset = window.innerWidth;
     }
-    console.log(translationOffset);
 }
 
 glassyButtons.forEach(button => {
