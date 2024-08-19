@@ -221,6 +221,7 @@
   margin: 0;
   height: 320px;
   display: flex;
+  position: relative;
 }
 
 .gallery > div {
