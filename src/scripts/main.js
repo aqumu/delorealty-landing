@@ -27,29 +27,29 @@ window.addEventListener('resize', () => { updateGallerySize(); });
 
 function updateGallerySize () {
     const containerWidth = document.querySelector('.container').offsetWidth - 32
-    if (window.innerWidth > 1440) {
+    if (document.documentElement.clientWidth > 1440) {
         document.querySelectorAll('.gallery').forEach((el) => {
             el.style.width = containerWidth + 'px';
             el.style.marginLeft = 45 + 'px';
             el.style.marginRight = 45 + 'px';
         });
-        galleryOuter.firstElementChild.style.marginLeft = (window.innerWidth - containerWidth)/2 + 'px';
-        galleryOuter.lastElementChild.style.marginRight = (window.innerWidth - containerWidth)/2 + 'px';
+        galleryOuter.firstElementChild.style.marginLeft = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
+        galleryOuter.lastElementChild.style.marginRight = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
         translationOffset = containerWidth + 90;
-    } else if (window.innerWidth >= 768) {
+    } else if (document.documentElement.clientWidth >= 768) {
         document.querySelectorAll('.gallery').forEach((el) => {
             el.style.width = containerWidth + 'px';
-            el.style.marginLeft = (window.innerWidth - containerWidth)/2 + 'px';
-            el.style.marginRight = (window.innerWidth - containerWidth)/2 + 'px';
+            el.style.marginLeft = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
+            el.style.marginRight = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
         });
-        translationOffset = window.innerWidth;
+        translationOffset = document.documentElement.clientWidth;
     } else {
         document.querySelectorAll('.gallery').forEach((el) => {
-            el.style.width = window.innerWidth + 'px';
+            el.style.width = document.documentElement.clientWidth + 'px';
             el.style.marginLeft = '0px';
             el.style.marginRight = '0px';
         })
-        translationOffset = window.innerWidth;
+        translationOffset = document.documentElement.clientWidth;
     }
 }
 
