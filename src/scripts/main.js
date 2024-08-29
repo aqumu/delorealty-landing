@@ -11,9 +11,9 @@ const playIcon = document.querySelector('.play-icon');
 const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
 let translationOffset;
-updateGallerySize();
-let id;
 let currentProgress = 0;
+let id;
+updateGallerySize();
 let svg = document.getElementById('svg');
 let path = svg.firstElementChild;
 let path2 = svg.lastElementChild;
@@ -51,6 +51,8 @@ function updateGallerySize () {
         })
         translationOffset = document.documentElement.clientWidth;
     }
+    let currentDot = dots[currentProgress];
+    galleryOuter.style.transform = 'translateX(' + (currentDot.dataset.id * translationOffset * -1) + 'px)'
 }
 
 glassyButtons.forEach(button => {
