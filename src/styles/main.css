@@ -340,41 +340,6 @@ progress {
   display: block !important;
 }
 
-.map {
-  background-image: url('/map.png');
-  background-size: cover;
-  -webkit-box-shadow: inset 0 0 20px 20px rgba(255,255,255,1);
-  -moz-box-shadow: inset 0 0 20px 20px rgba(255,255,255,1);
-  box-shadow: inset 0 0 20px 20px rgba(255,255,255,1);
-}
-
-@media (max-width: 640px) {
-  .map {
-    background-image: url('/map.png');
-    background-size: cover;
-    -webkit-box-shadow: inset 0 40px 20px -20px #fff, inset 0 -40px 20px -20px #fff;
-    -moz-box-shadow: inset 0 40px 20px -20px #fff, inset 0 -40px 20px -20px #fff;
-    box-shadow: inset 0 40px 20px -20px #fff, inset 0 -40px 20px -20px #fff;
-  }
-}
-
-.map-dot {
-  width: 2rem;
-  height: 2rem;
-  background-color: white;
-  border-radius: 100%;
-  border: #e84c05 solid 4px;
-  outline: white solid 3px;
-  outline-offset: 0;
-  position: absolute;
-  transform: translate(-50%, -50%) scale(0);
-  display: flex;
-  opacity: 0;
-  transition: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 1000ms;
-}
-
 @media (min-width: 1280px) {
   .container {
     max-width: 1280px;

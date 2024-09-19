@@ -10,18 +10,14 @@ const galleryRemoteOffset = galleryOuter.getBoundingClientRect().bottom + window
 const playIcon = document.querySelector('.play-icon');
 const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
+const map = document.querySelector('.map')
+const mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+console.log(mapOffset)
 let translationOffset;
 let currentProgress = 0;
 let id;
+let isMapPlayed = 0;
 updateGallerySize();
-let svg = document.getElementById('svg');
-let path = svg.firstElementChild;
-let path2 = svg.lastElementChild;
-let pathLength = path.getTotalLength();
-let pathOffset = path.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-const mapDots = Array.from(svg.parentElement.children)
-path.style.strokeDasharray = pathLength + ' ' + pathLength;
-path.style.strokeDashoffset = pathLength;
 
 window.addEventListener('resize', () => { updateGallerySize(); });
 
@@ -165,9 +161,7 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
     }
 });
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+
 
 hiddenElements.forEach((el) => observer.observe(el));
 
@@ -175,17 +169,9 @@ document.addEventListener("scroll", async () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);
     }
-    if (window.scrollY >= pathOffset) {
-        await sleep(1000)
-        path.style.strokeDashoffset = '0';
-        await sleep(1200)
-        path.style.opacity = '0';
-        path2.style.opacity = '1';
-        await sleep(1000)
-        mapDots.forEach( (el) => {
-            el.style.opacity = '1';
-            el.style.transform = 'translate(-50%, -50%) scale(1)';
-        })
+    if (window.scrollY >= mapOffset && isMapPlayed === 0) {
+        setTimeout(map.play(),1000)
+        isMapPlayed = 1;
     }
 });
 

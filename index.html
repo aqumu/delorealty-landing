@@ -142,20 +142,12 @@
       </div>
 
       <div class="container md:flex mb-[100px] relative px-0 sm:px-4">
-        <div class="w-full md:w-2/5 flex flex-col">
-          <span class=" text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-auto mb-4 mx-4 md:mr-4">Ну ооочень крутая интерактивная карта</span>
-          <span class=" text-xl md:text-2xl lg:text-3xl text-center mb-6 mx-4 md:mb-auto md:mr-4">Выбирайте области поиска простым движением руки</span>
+        <div class="w-full md:w-2/3 flex flex-col">
+          <span class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-auto mb-4 mx-4 md:mr-4">Ну ооочень крутая интерактивная карта</span>
+          <span class="text-xl md:text-2xl lg:text-3xl text-center mb-6 mx-4 md:mb-auto md:mr-4">Выбирайте области поиска простым движением руки</span>
         </div>
-        <div class="map w-full md:w-3/5 aspect-square relative rounded-2xl">
-          <svg id="svg" class="absolute w-[40%] h-[40%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" width="50" height="58" viewBox="0 0 50 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="transition-all duration-[1200ms]" d="M13 6C29 4.5 40.5 11 45 17.5C49.5 24 50.5 36.5 43.5 44C26.7497 61.9468 2.99999 61 1.49999 39C0.299994 21.4 16.6667 6 25 0.5" stroke="#f39000"/>
-            <path class="transition-opacity duration-1000 opacity-0 stroke-[0.5]" d="M45 17.5C40.5 11 30.5 6 18.2751 5.78281C12 11.5 0.477266 24 1.49999 39C2.99999 61 26.7497 61.9468 43.5 44C50.5 36.5 49.5 24 45 17.5Z" stroke="#f39000" fill="#f39000" fill-opacity="0.25"/>
-          </svg>
-          <div class="map-dot top-[54%] left-[39%] transition-opacity duration-700"><p class="m-auto font-semibold text-sm">50</p></div>
-          <div class="map-dot top-[46%] left-[54%] transition-opacity duration-700"><p class="m-auto font-semibold text-sm">50</p></div>
-          <div class="map-dot top-[59%] left-[54%] transition-opacity duration-700"><p class="m-auto font-semibold text-sm">50</p></div>
-        </div>
-        <div class="map-bottom absolute bottom-0"></div>
+        <video muted type="video/webm" src="/map.webm" class="map w-full md:w-1/3 max-h-[90vh] aspect-[9/16] relative">
+        </video>
       </div>
 
       <div class="container flex flex-col mb-[100px]">
