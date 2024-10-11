@@ -162,7 +162,6 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
 });
 
 
-
 hiddenElements.forEach((el) => observer.observe(el));
 
 document.addEventListener("scroll", async () => {
