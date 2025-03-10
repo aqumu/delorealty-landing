@@ -11,15 +11,20 @@ const playIcon = document.querySelector('.play-icon');
 const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
 const map = document.querySelector('.map')
-const mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-console.log(mapOffset)
+const animation = document.querySelector('.animation')
+let mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 let translationOffset;
 let currentProgress = 0;
 let id;
 let isMapPlayed = 0;
 updateGallerySize();
 
-window.addEventListener('resize', () => { updateGallerySize(); });
+window.addEventListener('resize', () => {
+    updateGallerySize();
+    mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+    animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+});
 
 function updateGallerySize () {
     const containerWidth = document.querySelector('.container').offsetWidth - 32
@@ -164,13 +169,21 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
 
 hiddenElements.forEach((el) => observer.observe(el));
 
+async function playVideo(videoElem) {
+    try {
+        await videoElem.play();
+    } catch (error) {}
+}
+
 document.addEventListener("scroll", async () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);
     }
-    if (window.scrollY >= mapOffset && isMapPlayed === 0) {
-        setTimeout(map.play(),1000)
-        isMapPlayed = 1;
+    if (window.scrollY >= animationOffset) {
+        await playVideo(animation);
+    }
+    if (window.scrollY >= mapOffset) {
+        setTimeout(playVideo,1000);
     }
 });
 
