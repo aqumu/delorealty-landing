@@ -10,14 +10,14 @@ const galleryRemoteOffset = galleryOuter.getBoundingClientRect().bottom + window
 const playIcon = document.querySelector('.play-icon');
 const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
-const map = document.querySelector('.map')
+const map = document.querySelector('.map-animation  ')
 const animation = document.querySelector('.animation')
+const mapAnimation = document.querySelector('.map-animation')
 let mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 let translationOffset;
 let currentProgress = 0;
 let id;
-let isMapPlayed = 0;
 updateGallerySize();
 
 window.addEventListener('resize', () => {
@@ -172,18 +172,34 @@ hiddenElements.forEach((el) => observer.observe(el));
 async function playVideo(videoElem) {
     try {
         await videoElem.play();
-    } catch (error) {}
+    } catch (error) {
+        console.error("Error playing video:", error);
+    }
 }
 
-document.addEventListener("scroll", async () => {
+let isAnimationPlaying = false;
+let isMapAnimationPlaying = false;
+document.addEventListener("scroll", () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);
     }
-    if (window.scrollY >= animationOffset) {
-        await playVideo(animation);
+
+    if (window.scrollY >= animationOffset && !isAnimationPlaying) {
+        isAnimationPlaying = true;
+        playVideo(animation).then(() => {
+            setTimeout(async () => {
+                await playVideo(animation);
+                isAnimationPlaying = false;
+            }, 1000);
+        });
     }
-    if (window.scrollY >= mapOffset) {
-        setTimeout(playVideo,1000);
+
+    if (window.scrollY >= mapOffset && !isMapAnimationPlaying) {
+        isMapAnimationPlaying = true;
+        setTimeout(async () => {
+            await playVideo(mapAnimation); // Воспроизводим видео mapAnimation
+            // Не сбрасываем isMapAnimationPlaying, чтобы видео не повторялось
+        }, 1000);
     }
 });
 
