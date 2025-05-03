@@ -167,6 +167,7 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
 });
 
 
+
 hiddenElements.forEach((el) => observer.observe(el));
 
 async function playVideo(videoElem) {
@@ -203,5 +204,49 @@ document.addEventListener("scroll", () => {
     }
 });
 
+
+function toggleMute(button) {
+    const video = document.getElementById('animation');
+    const volumeX = button.querySelector('.feather-volume-x');
+    const volume2 = button.querySelector('.feather-volume-2');
+
+    if (video.muted) {
+        video.muted = false;
+        volumeX.classList.add('hidden');
+        volume2.classList.remove('hidden');
+    } else {
+        video.muted = true;
+        volumeX.classList.remove('hidden');
+        volume2.classList.add('hidden');
+    }
+}
+
+function videoEnded(video) {
+    const overlay = document.getElementById('videoOverlay');
+    const restartButton = document.getElementById('restartButton');
+
+    // Dim the video
+    overlay.classList.remove('bg-opacity-0');
+    overlay.classList.add('bg-opacity-40');
+
+    // Show restart button
+    restartButton.classList.remove('hidden');
+}
+
+function restartVideo(button) {
+    const video = document.getElementById('animation');
+    const overlay = document.getElementById('videoOverlay');
+
+    // Reset video
+    video.currentTime = 0;
+    video.play();
+
+    // Remove dim effect
+    overlay.classList.remove('bg-opacity-40');
+    overlay.classList.add('bg-opacity-0');
+
+    // Hide restart button
+    button.classList.add('hidden');
+}
 
 

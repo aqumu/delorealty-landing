@@ -17,7 +17,7 @@
 
   <body>
     <div class="overflow-x-clip">
-      <script defer type="module" src="/src/scripts/main.js"></script>
+      <script defer src="/src/scripts/main.js"></script>
       <div class="bg-base-100 h-[94px] navbar nav px-0">
         <div class="container">
           <div class="grid grid-cols-3 sm:grid-cols-4 w-full">
@@ -92,55 +92,89 @@
       </div>
 
       <div class="container mb-[100px] pt-[60px] md:pt-[100px]">
-<!--        <div class="block relative mb-[2.5rem] md:mb-[1.5rem] rounded-2xl w-full">-->
-<!--          <span class="block w-full text-2xl text-center 2xl:text-3xl 2xl:leading-[3rem] mb-4">-->
-<!--            Укажите свое название-->
-<!--          </span>-->
-<!--          <img alt="Заголовок сайта"-->
-<!--               class="md:inline-block drop-shadow-2xl rounded-lg sm:rounded-xl w-full hidden"-->
-<!--               src="/pic1.png">-->
-<!--          <img alt="Заголовок сайта"-->
-<!--               class="inline-block drop-shadow-2xl rounded-lg sm:rounded-xl w-full md:hidden"-->
-<!--               src="/pic1_alt.png">-->
-<!--        </div>-->
-
-<!--        <div class="md:flex mb-[1.5rem] rounded-2xl w-full">-->
-<!--          <div class="md:block flex mb-[1.5rem] md:mb-0">-->
-<!--            <span class="md:block text-2xl text-center 2xl:text-3xl leading-[2.5rem] 2xl:leading-[3rem] hidden mb-4">-->
-<!--              Установите свой логотип-->
-<!--            </span>-->
-<!--            <div class="w-[60%] md:w-fit aspect-[501/476]">-->
-<!--              <img alt="Меню загрузки логотипа"-->
-<!--                   class="drop-shadow-2xl rounded-lg sm:rounded-xl h-full" src="/pic2.png">-->
-<!--            </div>-->
-<!--            <span class="md:hidden flex pl-4 w-[40%] text-2xl text-center leading-[2.5rem] self-center">-->
-<!--              Устано&shy;вите свой логотип-->
-<!--            </span>-->
-<!--          </div>-->
-
-<!--          <div class="md:ml-[3svw]">-->
-<!--            <span class="block w-full text-2xl text-center 2xl:text-3xl leading-[2.5rem] 2xl:leading-[3rem] mb-4">-->
-<!--              Используйте карточку объекта для презентации-->
-<!--            </span>-->
-<!--            <div class="w-fit aspect-[1104/472]">-->
-<!--              <img alt="Пример карточки объекта"-->
-<!--                   class="drop-shadow-2xl rounded-lg sm:rounded-xl h-full" src="/pic3.png">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="block md:relative rounded-2xl w-full">-->
-<!--          <span class="block w-full text-2xl text-center 2xl:text-3xl leading-[2.5rem] 2xl:leading-[3rem] mb-4">-->
-<!--            Подменяйте контакты на свои при работе с клиентами-->
-<!--          </span>-->
-<!--          <img alt="Пример объекта с подменными контактами"-->
-<!--               class="w-full drop-shadow-2xl" src="/pic4.png">-->
-<!--        </div>-->
         <span class="block w-full text-center text-3xl 2xl:leading-[3rem] mb-8">
           Сделайте сайт своим
         </span>
-        <video muted playsinline loop type="video/mp4" class="animation w-[80vw] aspect-[16/9] m-auto" src="/s2animation.mp4">
-        </video>
+        <div class="relative bg-white w-full max-h-[90vh] aspect-[16/9]">
+          <video muted playsinline type="video/mp4" src="/s2animation.mp4" id="animation" class="animation w-full h-full" onended="videoEnded(this)"></video>
+
+          <!-- Video overlay (for dim effect) -->
+          <div class="absolute inset-0 bg-black bg-opacity-0 pointer-events-none transition-opacity duration-300" id="videoOverlay"></div>
+
+          <!--Container for buttons-->
+          <div class="absolute bottom-4 right-4">
+
+          <!-- Restart button (hidden by default) -->
+          <button id="restartButton" class="hidden h-[44px] w-[44px] mr-3 transform bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all" onclick="restartVideo(this)">
+            <svg class="fill-[#fff] hidden replay-icon" viewBox="0 0 56 56" width="28" height="28">
+              <path d="M37.3,26.7c-1,0.1-1.8,1-1.8,2c0,4.1-3.4,7.4-7.5,7.4c-4.1,0-7.4-3.4-7.4-7.5c0-4.1,3.3-7.4,7.5-7.4l0.1,0l0.2,0l0.5,0 l-2.2,2.2c-0.8,0.8-0.8,2.1,0,2.9c0.7,0.7,1.9,0.8,2.7,0.2l0.2-0.2l5.3-5.3c0.7-0.7,0.8-1.9,0.2-2.7l-0.2-0.2l-5.3-5.3 c-0.8-0.8-2.1-0.8-2.8,0c0,0,0,0,0,0c-0.7,0.7-0.8,1.9-0.1,2.7l0.1,0.2l1.4,1.4l-0.5,0c-6.4,0.2-11.3,5.6-11.1,11.9 S22,40.5,28.4,40.2c6.2-0.2,11.1-5.3,11.1-11.5c0-1-0.8-1.9-1.8-2l-0.2,0L37.3,26.7z"></path>
+            </svg>
+          </button>
+
+          <!-- Unmute button -->
+            <button class="h-[44px] w-[44px] group bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all relative" onclick="toggleMute(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 21 25" class="feather feather-volume-x absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <rect width="21" height="25" fill="none"/>
+                <path d="M15.0535,20.83783a.55655.55655,0,0,0,.78293.00244.548.548,0,0,0,.003-.77812L.9465,5.16168a.55776.55776,0,0,0-.78293-.00244.548.548,0,0,0-.00295.77812Z" fill="#fff"/>
+                <path d="M1.5,9A1.50062,1.50062,0,0,0,0,10.5v4A1.50062,1.50062,0,0,0,1.5,16H4.4l5.0127,4.73083A.93.93,0,0,0,11,20.14825V18.33807L1.66559,9Z" fill="#fff"/>
+                <path d="M11,4.83215a.93.93,0,0,0-1.58728-.58258L5.39526,8.05682,11,13.66382Z" fill="#fff"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 21 25" class="feather feather-volume-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <title>speaker.2.fill_reduced@1x</title>
+                <rect width="21" height="25" fill="none"/>
+                <path d="M15.44879,16.3875a.55051.55051,0,0,1-.45716-.85518,5.45379,5.45379,0,0,0-.02246-6.06147.55025.55025,0,1,1,.91236-.61537,6.55712,6.55712,0,0,1,.02637,7.28636A.54931.54931,0,0,1,15.44879,16.3875Z" fill="#fff"/>
+                <path d="M18.524,19a.52388.52388,0,0,1-.32053-.109.55375.55375,0,0,1-.10621-.76458,9.543,9.543,0,0,0,0-11.25256.55375.55375,0,0,1,.10621-.76458.52648.52648,0,0,1,.74726.10853,10.65433,10.65433,0,0,1,0,12.56466A.52777.52777,0,0,1,18.524,19Z" fill="#fff"/>
+                <path d="M11,20.14826a.93.93,0,0,1-1.58725.58258L4.4,16H1.5A1.50064,1.50064,0,0,1,0,14.5v-4A1.50064,1.50064,0,0,1,1.5,9H4.4L9.41275,4.24957A.93.93,0,0,1,11,4.83215Z" fill="#fff"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+<!--        <script>-->
+<!--          function toggleMute(button) {-->
+<!--            const video = document.getElementById('animation');-->
+<!--            const volumeX = button.querySelector('.feather-volume-x');-->
+<!--            const volume2 = button.querySelector('.feather-volume-2');-->
+
+<!--            if (video.muted) {-->
+<!--              video.muted = false;-->
+<!--              volumeX.classList.add('hidden');-->
+<!--              volume2.classList.remove('hidden');-->
+<!--            } else {-->
+<!--              video.muted = true;-->
+<!--              volumeX.classList.remove('hidden');-->
+<!--              volume2.classList.add('hidden');-->
+<!--            }-->
+<!--          }-->
+
+<!--          function videoEnded(video) {-->
+<!--            const overlay = document.getElementById('videoOverlay');-->
+<!--            const restartButton = document.getElementById('restartButton');-->
+
+<!--            // Dim the video-->
+<!--            overlay.classList.remove('bg-opacity-0');-->
+<!--            overlay.classList.add('bg-opacity-40');-->
+
+<!--            // Show restart button-->
+<!--            restartButton.classList.remove('hidden');-->
+<!--          }-->
+
+<!--          function restartVideo(button) {-->
+<!--            const video = document.getElementById('animation');-->
+<!--            const overlay = document.getElementById('videoOverlay');-->
+
+<!--            // Reset video-->
+<!--            video.currentTime = 0;-->
+<!--            video.play();-->
+
+<!--            // Remove dim effect-->
+<!--            overlay.classList.remove('bg-opacity-40');-->
+<!--            overlay.classList.add('bg-opacity-0');-->
+
+<!--            // Hide restart button-->
+<!--            button.classList.add('hidden');-->
+<!--          }-->
+<!--        </script>-->
       </div>
 
       <div class="container md:flex mb-[100px] relative px-0 sm:px-4">
