@@ -1,31 +1,38 @@
 const hiddenElements = document.querySelectorAll('.notshown');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('shown');
+        }
+    });
+});
+hiddenElements.forEach((el) => observer.observe(el));
+// анимация появления при загрузке сайта и первом пролистывании
+
 const glassyButtons = document.querySelectorAll('.glassy-button');
+glassyButtons.forEach(button => {
+    button.addEventListener('mousemove', (event) => {
+        const centerX = button.offsetWidth / 2;
+        const centerY = button.offsetHeight / 2;
+
+        const offsetX = event.offsetX - centerX;
+        const offsetY = event.offsetY - centerY;
+
+        button.style.setProperty("--_x-motion", `${offsetX}px`);
+        button.style.setProperty("--_y-motion", `${offsetY}px`);
+    })
+})
+// красивая кнопка
+
+const timeout = 30;
 const galleryOuter = document.querySelector('.gallery-outer');
 const galleryRemote = document.querySelector('.gallery-remote');
+const galleryRemoteOffset = galleryOuter.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 const galleryRemoteOuter = document.querySelector('.gallery-remote-outer');
 const dots = Array.from(galleryRemote.children);
 const bars = [dots[0].firstElementChild, dots[1].firstElementChild, dots[2].firstElementChild];
-const timeout = 30;
-const galleryRemoteOffset = galleryOuter.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-const playIcon = document.querySelector('.play-icon');
-const pauseIcon = document.querySelector('.pause-icon');
-const replayIcon = document.querySelector('.replay-icon');
-const map = document.querySelector('.map-animation  ')
-const animation = document.querySelector('.animation')
-const mapAnimation = document.querySelector('.map-animation')
-let mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-let translationOffset;
 let currentProgress = 0;
-let id;
-updateGallerySize();
-
-window.addEventListener('resize', () => {
-    updateGallerySize();
-    mapOffset = map.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-    animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-});
-
+let translationOffset;
 function updateGallerySize () {
     const containerWidth = document.querySelector('.container').offsetWidth - 32
     if (document.documentElement.clientWidth > 1440) {
@@ -55,41 +62,9 @@ function updateGallerySize () {
     let currentDot = dots[currentProgress];
     galleryOuter.style.transform = 'translateX(' + (currentDot.dataset.id * translationOffset * -1) + 'px)'
 }
+updateGallerySize();
+// галерея и управление ей
 
-glassyButtons.forEach(button => {
-    button.addEventListener('mousemove', (event) => {
-      const centerX = button.offsetWidth / 2;
-      const centerY = button.offsetHeight / 2;
-
-      const offsetX = event.offsetX - centerX;
-      const offsetY = event.offsetY - centerY;
-
-      button.style.setProperty("--_x-motion", `${offsetX}px`);
-      button.style.setProperty("--_y-motion", `${offsetY}px`);
-    })
-})
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('shown');
-        }
-    });
-});
-
-const remoteObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting && pauseIcon.classList.contains('block')) {
-            entry.target.classList.add('shown');
-            id = setInterval(moveProgress, timeout, bars[currentProgress]);
-        } else if (entry.isIntersecting) {
-            entry.target.classList.add('shown');
-        } else {
-            clearInterval(id);
-            id = 0;
-        }
-    });
-});
 
 function moveProgress(Bar) {
     if (Bar.value < 100) {
@@ -116,7 +91,22 @@ function moveProgress(Bar) {
         replayIcon.classList.add('block');
     }
 }
+const remoteObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting && pauseIcon.classList.contains('block')) {
+            entry.target.classList.add('shown');
+            id = setInterval(moveProgress, timeout, bars[currentProgress]);
+        } else if (entry.isIntersecting) {
+            entry.target.classList.add('shown');
+        } else {
+            clearInterval(id);
+            id = 0;
+        }
+    });
+});
 
+
+let id;
 galleryRemote.addEventListener('click', e => {
     const currentDot = dots[currentProgress]
     const targetDot = e.target
@@ -138,6 +128,10 @@ galleryRemote.addEventListener('click', e => {
     }
 });
 
+
+const playIcon = document.querySelector('.play-icon');
+const pauseIcon = document.querySelector('.pause-icon');
+const replayIcon = document.querySelector('.replay-icon');
 galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
     if (id !== 0) {
         clearInterval(id);
@@ -166,9 +160,15 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
     }
 });
 
+window.addEventListener('resize', () => {
+    updateGallerySize();
+    mapOffset = mapAnimation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+    animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+});
 
 
-hiddenElements.forEach((el) => observer.observe(el));
+
+
 
 async function playVideo(videoElem) {
     try {
@@ -178,8 +178,13 @@ async function playVideo(videoElem) {
     }
 }
 
+
+const animation = document.querySelector('.animation')
+const mapAnimation = document.querySelector('.map-animation')
+let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 let isAnimationPlaying = false;
 let isMapAnimationPlaying = false;
+let mapOffset = mapAnimation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 document.addEventListener("scroll", () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);
