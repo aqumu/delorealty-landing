@@ -170,9 +170,9 @@ window.addEventListener('resize', () => {
 
 
 
-async function playVideo(videoElem) {
+function playVideo(videoElem) {
     try {
-        await videoElem.play();
+        videoElem.play();
     } catch (error) {
         console.error("Error playing video:", error);
     }
@@ -182,30 +182,25 @@ async function playVideo(videoElem) {
 const animation = document.querySelector('.animation')
 const mapAnimation = document.querySelector('.map-animation')
 let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-let isAnimationPlaying = false;
-let isMapAnimationPlaying = false;
+let isAnimationPlayed = false;
+let isMapAnimationPlayed = false;
 let mapOffset = mapAnimation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 document.addEventListener("scroll", () => {
     if (window.scrollY >= galleryRemoteOffset) {
         remoteObserver.observe(galleryRemoteOuter);
     }
 
-    if (window.scrollY >= animationOffset && !isAnimationPlaying) {
-        isAnimationPlaying = true;
-        playVideo(animation).then(() => {
-            setTimeout(async () => {
-                await playVideo(animation);
-                isAnimationPlaying = false;
-            }, 1000);
-        });
+    if (window.scrollY >= animationOffset && !isAnimationPlayed) {
+        isAnimationPlayed = true;
+        playVideo(animation);
     }
 
-    if (window.scrollY >= mapOffset && !isMapAnimationPlaying) {
-        isMapAnimationPlaying = true;
+    if (window.scrollY >= mapOffset && !isMapAnimationPlayed) {
+        isMapAnimationPlayed = true;
         setTimeout(async () => {
             await playVideo(mapAnimation); // Воспроизводим видео mapAnimation
-            // Не сбрасываем isMapAnimationPlaying, чтобы видео не повторялось
-        }, 1000);
+            // Не сбрасываем isMapAnimationPlayed, чтобы видео не повторялось
+        }, 500);
     }
 });
 
