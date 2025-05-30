@@ -34,30 +34,31 @@ const bars = [dots[0].firstElementChild, dots[1].firstElementChild, dots[2].firs
 let currentProgress = 0;
 let translationOffset;
 function updateGallerySize () {
-    const containerWidth = document.querySelector('.container').offsetWidth - 32
-    if (document.documentElement.clientWidth > 1440) {
+    const containerWidth = document.querySelector('.myContainer').offsetWidth - 32
+    const clientWidth = document.documentElement.clientWidth;
+    if (clientWidth > 1440) {
         document.querySelectorAll('.gallery').forEach((el) => {
             el.style.width = containerWidth + 'px';
             el.style.marginLeft = 45 + 'px';
             el.style.marginRight = 45 + 'px';
         });
-        galleryOuter.firstElementChild.style.marginLeft = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
-        galleryOuter.lastElementChild.style.marginRight = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
+        galleryOuter.firstElementChild.style.marginLeft = (clientWidth - containerWidth)/2 + 'px';
+        galleryOuter.lastElementChild.style.marginRight = (clientWidth - containerWidth)/2 + 'px';
         translationOffset = containerWidth + 90;
-    } else if (document.documentElement.clientWidth >= 768) {
+    } else if (clientWidth >= 768) {
         document.querySelectorAll('.gallery').forEach((el) => {
             el.style.width = containerWidth + 'px';
-            el.style.marginLeft = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
-            el.style.marginRight = (document.documentElement.clientWidth - containerWidth)/2 + 'px';
+            el.style.marginLeft = (clientWidth - containerWidth)/2 + 'px';
+            el.style.marginRight = (clientWidth - containerWidth)/2 + 'px';
         });
-        translationOffset = document.documentElement.clientWidth;
+        translationOffset = clientWidth;
     } else {
         document.querySelectorAll('.gallery').forEach((el) => {
-            el.style.width = document.documentElement.clientWidth + 'px';
+            el.style.width = clientWidth + 'px';
             el.style.marginLeft = '0px';
             el.style.marginRight = '0px';
         })
-        translationOffset = document.documentElement.clientWidth;
+        translationOffset = clientWidth;
     }
     let currentDot = dots[currentProgress];
     galleryOuter.style.transform = 'translateX(' + (currentDot.dataset.id * translationOffset * -1) + 'px)'
