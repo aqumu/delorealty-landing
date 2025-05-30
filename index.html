@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div class="container mb-[100px] pt-[60px] md:pt-[100px]">
+      <div class="container mb-[100px] pt-[60px] md:pt-[100px] bg-opacity-40">
         <span class="block w-full text-center text-3xl 2xl:leading-[3rem] mb-8">
           Сделайте сайт своим
         </span>
@@ -99,23 +99,23 @@
           Готовая система для работы с клиентами. Объекты собственников, эксклюзивы, публикация своих объектов, презентации для клиентов. Различные варианты подписки. Просто замените логотип и название, и сделайте систему своей.
         </span>
         <div class="relative bg-white w-full max-h-[90vh] aspect-[16/9]">
-          <video muted playsinline type="video/mp4" src="/s2animation.mp4" id="animation" class="animation w-full h-full rounded-2xl drop-shadow-2xl" onended="videoEnded(this)"></video>
+          <video muted playsinline type="video/mp4" src="/s2animation.mp4" id="animation" class="animation w-full h-full rounded-2xl drop-shadow-2xl"></video>
 
           <!-- Video overlay (for dim effect) -->
           <div class="absolute inset-0 bg-black bg-opacity-0 pointer-events-none transition-opacity duration-300 rounded-2xl" id="videoOverlay"></div>
 
           <!--Container for buttons-->
-          <div class="absolute bottom-4 right-4 h-[44px]">
+          <div class="absolute bottom-4 right-4 h-[44px] flex gap-3">
 
           <!-- Restart button (hidden by default) -->
-          <button id="restartButton" class="hidden h-[44px] w-[44px] mr-3 transform bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all" onclick="restartVideo(this)">
+          <button id="restartButton" class="hidden h-[44px] w-[44px] transform bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all">
             <svg class="replay-icon" viewBox="0 0 56 56" width="44" height="44">
               <path d="M37.3,26.7c-1,0.1-1.8,1-1.8,2c0,4.1-3.4,7.4-7.5,7.4c-4.1,0-7.4-3.4-7.4-7.5c0-4.1,3.3-7.4,7.5-7.4l0.1,0l0.2,0l0.5,0 l-2.2,2.2c-0.8,0.8-0.8,2.1,0,2.9c0.7,0.7,1.9,0.8,2.7,0.2l0.2-0.2l5.3-5.3c0.7-0.7,0.8-1.9,0.2-2.7l-0.2-0.2l-5.3-5.3 c-0.8-0.8-2.1-0.8-2.8,0c0,0,0,0,0,0c-0.7,0.7-0.8,1.9-0.1,2.7l0.1,0.2l1.4,1.4l-0.5,0c-6.4,0.2-11.3,5.6-11.1,11.9 S22,40.5,28.4,40.2c6.2-0.2,11.1-5.3,11.1-11.5c0-1-0.8-1.9-1.8-2l-0.2,0L37.3,26.7z" fill="#fff"/>
             </svg>
           </button>
 
           <!-- Unmute button -->
-            <button class="h-[44px] w-[44px] group bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all relative" onclick="toggleMute(this)">
+            <button class="h-[44px] w-[44px] group bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all relative">
               <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-volume-x absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" width="28" height="28" viewBox="0 0 24 24" fill="#000000">
                 <path fill="#fff" d="M5.707 4.293a1 1 0 0 0-1.414 1.414l14 14a1 1 0 0 0 1.414-1.414l-.004-.005C21.57 16.498 22 13.938 22 12a9.97 9.97 0 0 0-2.929-7.071a1 1 0 1 0-1.414 1.414A7.97 7.97 0 0 1 20 12c0 1.752-.403 3.636-1.712 4.873l-1.433-1.433C17.616 14.37 18 13.107 18 12c0-1.678-.69-3.197-1.8-4.285a1 1 0 1 0-1.4 1.428A4 4 0 0 1 16 12c0 .606-.195 1.335-.59 1.996L13 11.586V6.135c0-1.696-1.978-2.622-3.28-1.536L7.698 6.284l-1.99-1.991ZM4 8h.586L13 16.414v1.451c0 1.696-1.978 2.622-3.28 1.536L5.638 16H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2"></path>
               </svg>
