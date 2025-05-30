@@ -204,8 +204,9 @@ document.addEventListener("scroll", () => {
     }
 });
 
-
-function toggleMute(button) {
+const muteButton = document.getElementById('muteButton');
+function toggleMute() {
+    const button = muteButton;
     const video = document.getElementById('animation');
     const volumeX = button.querySelector('.feather-volume-x');
     const volume2 = button.querySelector('.feather-volume-2');
@@ -220,8 +221,9 @@ function toggleMute(button) {
         volume2.classList.add('hidden');
     }
 }
+muteButton.addEventListener('click', toggleMute);
 
-function videoEnded(video) {
+function videoEnded() {
     const overlay = document.getElementById('videoOverlay');
     const restartButton = document.getElementById('restartButton');
 
@@ -232,8 +234,12 @@ function videoEnded(video) {
     // Show restart button
     restartButton.classList.remove('hidden');
 }
+animation.addEventListener('ended', videoEnded);
+animation.volume = 0.4;
 
-function restartVideo(button) {
+const restartButton = document.getElementById('restartButton');
+function restartVideo(event) {
+    const button = restartButton;
     const video = document.getElementById('animation');
     const overlay = document.getElementById('videoOverlay');
 
@@ -248,5 +254,6 @@ function restartVideo(button) {
     // Hide restart button
     button.classList.add('hidden');
 }
+document.getElementById("restartButton").addEventListener('click', restartVideo);
 
 
