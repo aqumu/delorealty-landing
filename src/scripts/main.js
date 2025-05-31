@@ -165,6 +165,9 @@ window.addEventListener('resize', () => {
     updateGallerySize();
     mapOffset = mapAnimation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
     animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+    if (document.documentElement.clientWidth >= 768) {
+        document.getElementById("mapAnimationText").style.top = "0";
+    }
 });
 
 
@@ -179,9 +182,20 @@ function playVideo(videoElem) {
     }
 }
 
+const mapAnimation = document.getElementById('mapAnimation')
+function playMapAnimation() {
+    try {
+        mapAnimation.play();
+        if (document.documentElement.clientWidth < 768) {
+            document.getElementById('mapAnimationText').style.top = "15lvh";
+        }
+    } catch (error) {
+        console.error("Error playing video:", error);
+    }
+}
+
 
 const animation = document.querySelector('.animation')
-const mapAnimation = document.querySelector('.map-animation')
 let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
 let isAnimationPlayed = false;
 let isMapAnimationPlayed = false;
@@ -199,7 +213,7 @@ document.addEventListener("scroll", () => {
     if (window.scrollY >= mapOffset && !isMapAnimationPlayed) {
         isMapAnimationPlayed = true;
         setTimeout(async () => {
-            await playVideo(mapAnimation); // Воспроизводим видео mapAnimation
+            await playMapAnimation(); // Воспроизводим видео mapAnimation
             // Не сбрасываем isMapAnimationPlayed, чтобы видео не повторялось
         }, 500);
     }
