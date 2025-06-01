@@ -12,12 +12,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Wix+Madefor+Display:wght@400..800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1000ms;
+        background: #ffffff linear-gradient(to bottom, #ffdfc8, transparent 80vh) no-repeat;
+        background-size: 100% 80vh;
+        animation: fadeInGradient 1s ease-out;
+      }
+
+      @keyframes fadeInGradient {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.visibility = 'visible';
+        document.body.style.opacity = '1';
+      });
+    </script>
   </head>
 
 
   <body>
     <div class="overflow-x-clip">
-      <script defer type="module" src="/src/scripts/main.js"></script>
+      <script type="module" src="/src/scripts/main.js"></script>
       <div class="bg-base-100 h-[94px] navbar nav px-0">
         <div class="myContainer">
           <div class="grid grid-cols-3 sm:grid-cols-4 w-full">
@@ -47,10 +72,6 @@
         </h2>
 
         <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl"><span>Начать <svg class="h-[20px] inline ml-1 fill-white" style="pointer-events: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span></a>
-        <div class="blob-cont">
-          <div class="yellow blob"></div>
-          <div class="red blob"></div>
-        </div>
       </div>
 
       <div class="overflow-x-hidden pb-[60px] md:pb-[100px]">
@@ -107,7 +128,7 @@
         <h2 class="block w-full text-2xl mb-7">
           Просто замените логотип и название, и сделайте систему своей
         </h2>
-        <div class="relative bg-white w-full aspect-[16/9]">
+        <div class="relative w-full aspect-[16/9]">
           <video muted playsinline type="video/mp4" src="/s2animation.mp4" id="animation" class="animation w-full h-full rounded-2xl drop-shadow-2xl"></video>
 
           <!-- Video overlay (for dim effect) -->
@@ -137,16 +158,16 @@
       </div>
 
       <div class="myContainer md:flex mb-[100px] relative px-0 sm:px-4">
-        <div id="mapAnimationText" style="top: 0" class="w-full md:w-2/3 flex flex-col relative transition-all ease-in-out duration-[1s] delay-[5s] z-10">
+        <div id="mapAnimationText" style="top: 0" class="w-full md:w-2/3 flex flex-col relative transition-[top] ease-in-out duration-[1s] delay-[5s] z-10">
           <span class="text-3xl lg:text-4xl font-bold text-center mt-auto mb-4 mx-8">Ну ооочень крутая интерактивная карта</span>
           <span class="text-2xl lg:text-3xl text-center mx-4 mb-3 md:mb-auto">Выбирайте области поиска простым движением руки</span>
         </div>
-        <video id="mapAnimation" muted playsinline type="video/webm" src="/map.mp4" class="bg-white mx-auto h-[60lvh] md:w-1/3 max-h-[90vh] aspect-[9/16] relative">
+        <video id="mapAnimation" muted playsinline type="video/webm" src="/map.mp4" class="bg-white mx-auto max-h-[60lvh] md:w-1/3 aspect-[9/16] relative">
         </video>
       </div>
 
       <div class="myContainer flex flex-col mb-[100px]">
-        <span class="w-full text-2xl md:text-3xl text-center mb-4">Работайте где угодно - весь функционал доступен на мобильных устройствах</span>
+        <span class="w-full text-2xl md:text-3xl text-center mb-7">Работайте где угодно - весь функционал доступен на мобильных устройствах</span>
         <div class="relative w-full h-[40vw]">
           <!-- Card 1 -->
           <img
