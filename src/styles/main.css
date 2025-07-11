@@ -20,9 +20,9 @@
 }
 
 .nav {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: saturate(0%) blur(17px);
+  -webkit-backdrop-filter: saturate(0%) blur(15px);
   position: sticky;
   top: 0;
   border-bottom: 1px solid rgb(0 0 0 / 8%);
