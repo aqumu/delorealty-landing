@@ -17,11 +17,7 @@
 }
 
 video {
-  filter: contrast(1);
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  background-color: transparent;
-  border: none;
+  clip-path: inset(0.5px round 0px);
 }
 
 .nav {
