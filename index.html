@@ -14,7 +14,8 @@
       body {
         visibility: hidden;
         opacity: 0;
-        transition: opacity 700ms;
+        transition: opacity 0.7s;
+        transition-delay: 0.3s;
         background: #ffffff linear-gradient(to bottom, #ffdfc8, transparent 80vh) no-repeat;
         background-size: 100% 80vh;
         animation: gradient-fade 2s ease-in-out forwards;
@@ -31,15 +32,6 @@
         }
         100% {
           background-position-y: 0;
-        }
-      }
-
-      @keyframes fadeInGradient {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
         }
       }
     </style>
@@ -67,28 +59,34 @@
         </div>
       </div>
 
-      <div class="myContainer flex flex-row my-12 flex-wrap notshown slide-up relative">
-        <div class="mb-5 w-full sm:w-[65%] sm:mr-[35%]">
+      <div class="myContainer flex flex-row my-12 flex-wrap relative">
+        <div class="mb-5 w-full sm:w-[65%] sm:mr-[35%] animated slide-left">
           <span class="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text bg-gradient-to-br from-success to-error text-transparent box-decoration-slice">
           Уникальная&nbsp;</span>
           <span class="font-medium text-4xl md:text-5xl lg:text-6xl">система недвижимости</span>
         </div>
-        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2">
+        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2 animated slide-left-1">
           Прямые контакты собственников
         </h2>
-        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2">
+        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2 animated slide-left-2">
           Чистая база объектов
         </h2>
-        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-7">
+        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-7 animated slide-left-3">
           Эксклюзивы
         </h2>
 
-        <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl min-w-[150px]"><span>Начать <svg class="h-[20px] inline ml-1 fill-white" style="pointer-events: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span></a>
+        <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl animated fade-in">
+          <span>Перейти
+            <svg class="h-[20px] mx-1.5 mt-1.5 fill-white" style="pointer-events: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+            </svg>
+          </span>
+        </a>
       </div>
 
-      <div class="overflow-x-hidden pb-[60px] md:pb-[100px]">
+      <div class="overflow-x-hidden pb-16 md:pb-24 animated fade-in">
         <div class="inline-flex gallery-outer">
-          <div class="gallery notshown slide-up">
+          <div class="gallery">
             <img src="/gallery1.jpg" alt="" class="drop-shadow-2xl mt-auto md:rounded-2xl mx-auto w-full">
           </div>
           <div class="gallery">
@@ -124,25 +122,25 @@
         </div>
       </div>
 
-      <div class="myContainer mb-[100px] pt-[60px] md:pt-[100px] bg-opacity-40">
-        <h1 class="block w-full text-3xl lg:text-4xl font-medium mb-5">
+      <div class="myContainer mb-24 pt-16 md:pt-24 bg-opacity-40">
+        <h1 class="block w-full text-3xl lg:text-4xl font-medium mb-5 animated fade-in">
           Сделайте готовую систему своей
         </h1>
-        <div class="space-y-2 mb-7">
-          <h2 class="text-2xl">
+        <div class="space-y-2 mb-6">
+          <h2 class="text-2xl animated fade-in">
             Заменяйте название сайта и логотип
             <span class="bg-clip-text bg-gradient-to-br from-success to-error text-transparent box-decoration-slice font-bold">
               на свои
             </span>
           </h2>
-          <h2 class="text-2xl">
+          <h2 class="text-2xl animated fade-in">
             Подставляйте
             <span class="bg-clip-text bg-gradient-to-br from-success to-error text-transparent box-decoration-slice font-bold">
               свои контакты
             </span>
             в объектах
           </h2>
-          <h2 class="text-2xl">
+          <h2 class="text-2xl animated fade-in">
             Создавайте мгновенные презентациии и
             <span class="bg-clip-text bg-gradient-to-br from-success to-error text-transparent box-decoration-slice font-bold">
               лендинги объектов
@@ -150,7 +148,13 @@
             для клиентов
           </h2>
         </div>
-        <div class="relative w-full aspect-[16/9]">
+        <div class="flex mb-8 animated fade-in">
+          <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl">
+            <span>Проверьте на деле
+            </span>
+          </a>
+        </div>
+        <div class="relative w-full aspect-[16/9] animated fade-in">
           <video muted playsinline type="video/mp4" src="/s2animation.mp4" id="animation" class="animation w-full h-full rounded-2xl drop-shadow-2xl"></video>
 
           <!-- Video overlay (for dim effect) -->
@@ -176,23 +180,29 @@
         </div>
       </div>
 
-      <div class="myContainer md:flex mb-[100px] relative px-0 sm:px-4">
+      <div class="myContainer md:flex mb-24 relative px-0 sm:px-4">
         <div id="mapAnimationText" style="top: 0" class="w-full md:w-2/3 flex flex-col relative transition-[top] ease-in-out duration-[1s] delay-[5s] z-10">
-          <span class="text-3xl lg:text-4xl font-bold text-start mt-auto mb-4 mr-8">Ну ооочень крутая интерактивная карта</span>
-          <span class="text-2xl lg:text-3xl text-start mr-8 mb-3 md:mb-auto">Выбирайте области поиска простым движением руки</span>
+          <span class="text-3xl lg:text-4xl font-bold text-start mt-auto mb-4 mr-8 animated fade-in">Ну ооочень крутая интерактивная карта</span>
+          <span class="text-2xl lg:text-3xl text-start mb-6 mr-8 animated fade-in">Выбирайте области поиска простым движением руки</span>
+          <div class="flex mb-5 md:mb-auto animated fade-in">
+            <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl">
+              <span>Оцените сами
+              </span>
+            </a>
+          </div>
         </div>
-        <video id="mapAnimation" muted playsinline type="video/webm" src="/map.mp4" class="bg-white mx-auto max-h-[60lvh] md:w-1/3 aspect-[9/16] relative grayscale-0">
+        <video id="mapAnimation" muted playsinline type="video/webm" src="/map.mp4" class="bg-white mx-auto max-h-[60lvh] md:w-1/3 aspect-[9/16] relative grayscale-0 animated fade-in">
         </video>
       </div>
 
-      <div class="myContainer flex flex-col mb-[100px]">
-        <span class="w-full text-3xl lg:text-4xl font-medium mb-12">Работайте где угодно - весь функционал доступен на мобильных устройствах</span>
-        <div class="relative w-full h-[26vw]">
+      <div class="myContainer flex flex-col mb-24">
+        <span class="w-full text-3xl lg:text-4xl font-medium mb-12 animated fade-in">Работайте где угодно - весь функционал доступен на мобильных устройствах</span>
+        <div class="relative w-full h-[26vw] animated fade-in">
           <!-- Card 1 -->
           <img
                   class="absolute h-full bottom-0 left-[35%] -translate-x-1/2 aspect-[901/548] bg-white transition-all duration-300 ease-in-out transform hover:scale-105 hover:z-20 hover:drop-shadow-xl"
                   src="/macbook.png"
-                  alt="image of an iMad with a mockup of the site"
+                  alt="image of a MacBook with a mockup of the site"
                   style="background: transparent;"
           >
 
@@ -212,6 +222,13 @@
                   style="background: transparent;"
           >
         </div>
+      </div>
+
+      <div class="myContainer my-24 flex animated fade-in ">
+        <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl mx-auto">
+          <span>Попробуйте сейчас
+          </span>
+        </a>
       </div>
 
       <footer class="bg-base-200 p-10 text-base-content footer">

@@ -1,4 +1,4 @@
-const hiddenElements = document.querySelectorAll('.notshown');
+const hiddenElements = document.querySelectorAll('.animated');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -253,7 +253,7 @@ animation.addEventListener('ended', videoEnded);
 animation.volume = 0.4;
 
 const restartButton = document.getElementById('restartButton');
-function restartVideo(event) {
+function restartVideo() {
     const button = restartButton;
     const video = document.getElementById('animation');
     const overlay = document.getElementById('videoOverlay');
