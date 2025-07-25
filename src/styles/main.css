@@ -16,10 +16,6 @@
   --yellow: #fca700;
 }
 
-video {
-  clip-path: inset(0.5px round 0px);
-}
-
 .nav {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(0%) blur(17px);
