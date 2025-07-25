@@ -2,24 +2,25 @@
 <html lang="ru">
   <head>
     <!-- HTML Meta Tags -->
-    <title>&amp;#x414;&amp;#x435;&amp;#x43B;&amp;#x430;&amp;#x435;&amp;</title>
+    <meta charset="UTF-8"/>
+    <title>Делаем сделки</title>
     <meta name="description" content="Готовая система совершения сделок для риелторов; Чистая база объектов собственников и эксклюзивов; Публикация своих объектов" />
 
     <!-- Google / Search Engine Tags -->
-    <meta itemprop="name" content="&amp;#x414;&amp;#x435;&amp;#x43B;&amp;#x430;&amp;#x435;&amp;" />
+    <meta itemprop="name" content="Делаем сделки" />
     <meta itemprop="description" content="Готовая система совершения сделок для риелторов; Чистая база объектов собственников и эксклюзивов; Публикация своих объектов" />
     <meta itemprop="image" content="/logo-b.jpg" />
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://aqumu.github.io/delorealty-landing/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="&amp;#x414;&amp;#x435;&amp;#x43B;&amp;#x430;&amp;#x435;&amp;" />
+    <meta property="og:title" content="Делаем сделки" />
     <meta property="og:description" content="Готовая система совершения сделок для риелторов; Чистая база объектов собственников и эксклюзивов; Публикация своих объектов" />
     <meta property="og:image" content="/logo-b.jpg" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="&amp;#x414;&amp;#x435;&amp;#x43B;&amp;#x430;&amp;#x435;&amp;" />
+    <meta name="twitter:title" content="Делаем сделки" />
     <meta name="twitter:description" content="Готовая система совершения сделок для риелторов; Чистая база объектов собственников и эксклюзивов; Публикация своих объектов" />
     <meta name="twitter:image" content="/logo-b.jpg" />
 
@@ -59,6 +60,10 @@
       document.addEventListener('DOMContentLoaded', function() {
         document.body.style.visibility = 'visible';
         document.body.style.opacity = '1';
+        const hiddenElementsStart = document.querySelectorAll('.animated-onstart');
+        hiddenElementsStart.forEach((el) => {
+            el.classList.add('shown');
+        });
       });
     </script>
   </head>
@@ -80,22 +85,22 @@
       </div>
 
       <div class="myContainer flex flex-row my-12 flex-wrap relative">
-        <div class="mb-5 w-full sm:w-[65%] sm:mr-[35%] animated slide-left">
+        <div class="mb-5 w-full sm:w-[65%] sm:mr-[35%] animated-onstart slide-left">
           <span class="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text bg-gradient-to-br from-success to-error text-transparent box-decoration-slice">
           Уникальная&nbsp;</span>
           <span class="font-medium text-4xl md:text-5xl lg:text-6xl">система недвижимости</span>
         </div>
-        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2 animated slide-left-1">
+        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2 animated-onstart slide-left-1">
           Прямые контакты собственников
         </h2>
-        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2 animated slide-left-2">
+        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-2 animated-onstart slide-left-2">
           Чистая база объектов
         </h2>
-        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-7 animated slide-left-3">
+        <h2 class="text-2xl w-full sm:w-[50%] sm:mr-[50%] mb-7 animated-onstart slide-left-3">
           Эксклюзивы
         </h2>
 
-        <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl animated fade-in">
+        <a href="https://delorealty.ru" class="glassy-button tracking-wide text-xl animated-onstart fade-in">
           <span>Перейти
             <svg class="h-[20px] mx-1.5 mt-1.5 fill-white" style="pointer-events: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
@@ -104,7 +109,7 @@
         </a>
       </div>
 
-      <div class="overflow-x-hidden pb-16 md:pb-24 animated fade-in">
+      <div class="overflow-x-hidden pb-16 md:pb-24 animated-onstart fade-in">
         <div class="inline-flex gallery-outer">
           <div class="gallery">
             <img src="/gallery1.jpg" alt="" class="drop-shadow-2xl mt-auto md:rounded-2xl mx-auto w-full">
