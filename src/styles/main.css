@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-}
-
 :root {
   font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 400;
@@ -17,6 +14,14 @@
 
   --red: #ff5800;
   --yellow: #fca700;
+}
+
+video {
+  filter: contrast(1);
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  background-color: transparent;
+  border: none;
 }
 
 .nav {
@@ -229,8 +234,8 @@ progress {
 
 .animated {
   opacity: 0;
-  filter: blur(5px);
-  transition: all 0.5s;
+  filter: blur(10px);
+  transition: all 1s;
 }
 
 .animated-onstart {
@@ -267,6 +272,7 @@ progress {
 .fade-in {
   opacity: 0;
   transform: none;
+  transition-delay: 0.3s;
 }
 
 @media(prefers-reduced-motion) {
