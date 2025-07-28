@@ -1,13 +1,15 @@
 const hiddenElements = document.querySelectorAll('.animated');
-const observer = new IntersectionObserver((entries) => {
+const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('shown');
         }
     });
+
 });
-hiddenElements.forEach((el) => observer.observe(el));
-// анимация появления при загрузке сайта и первом пролистывании
+hiddenElements.forEach((el) => scrollObserver.observe(el));
+// анимации при пролистывании
+
 
 const glassyButtons = document.querySelectorAll('.glassy-button');
 glassyButtons.forEach(button => {
@@ -24,6 +26,7 @@ glassyButtons.forEach(button => {
 })
 // красивая кнопка
 
+
 const timeout = 30;
 const galleryOuter = document.querySelector('.gallery-outer');
 const galleryRemote = document.querySelector('.gallery-remote');
@@ -33,7 +36,8 @@ const dots = Array.from(galleryRemote.children);
 const bars = [dots[0].firstElementChild, dots[1].firstElementChild, dots[2].firstElementChild];
 let currentProgress = 0;
 let translationOffset;
-function updateGallerySize () {
+
+function updateGallerySize() {
     const containerWidth = document.querySelector('.myContainer').offsetWidth - 32
     const clientWidth = document.documentElement.clientWidth;
     if (clientWidth > 1440) {
@@ -42,14 +46,14 @@ function updateGallerySize () {
             el.style.marginLeft = 45 + 'px';
             el.style.marginRight = 45 + 'px';
         });
-        galleryOuter.firstElementChild.style.marginLeft = (clientWidth - containerWidth)/2 + 'px';
-        galleryOuter.lastElementChild.style.marginRight = (clientWidth - containerWidth)/2 + 'px';
+        galleryOuter.firstElementChild.style.marginLeft = (clientWidth - containerWidth) / 2 + 'px';
+        galleryOuter.lastElementChild.style.marginRight = (clientWidth - containerWidth) / 2 + 'px';
         translationOffset = containerWidth + 90;
     } else if (clientWidth >= 768) {
         document.querySelectorAll('.gallery').forEach((el) => {
             el.style.width = containerWidth + 'px';
-            el.style.marginLeft = (clientWidth - containerWidth)/2 + 'px';
-            el.style.marginRight = (clientWidth - containerWidth)/2 + 'px';
+            el.style.marginLeft = (clientWidth - containerWidth) / 2 + 'px';
+            el.style.marginRight = (clientWidth - containerWidth) / 2 + 'px';
         });
         translationOffset = clientWidth;
     } else {
@@ -64,8 +68,6 @@ function updateGallerySize () {
     galleryOuter.style.transform = 'translateX(' + (currentDot.dataset.id * translationOffset * -1) + 'px)'
 }
 updateGallerySize();
-// галерея и управление ей
-
 
 function moveProgress(Bar) {
     if (Bar.value < 100) {
@@ -75,14 +77,14 @@ function moveProgress(Bar) {
         id = 0;
         let currentDot = dots[currentProgress];
         bars[currentProgress].value = 0;
-        currentProgress++;
 
+        currentProgress++;
         let targetDot = dots[currentProgress];
         currentDot.classList.remove('grow');
+
         targetDot.classList.add('grow');
 
         galleryOuter.style.transform = 'translateX(' + (targetDot.dataset.id * translationOffset * -1) + 'px)';
-
         id = setInterval(moveProgress, timeout, bars[currentProgress]);
     } else {
         clearInterval(id);
@@ -92,6 +94,7 @@ function moveProgress(Bar) {
         replayIcon.classList.add('block');
     }
 }
+
 const remoteObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting && pauseIcon.classList.contains('block')) {
@@ -105,9 +108,8 @@ const remoteObserver = new IntersectionObserver((entries) => {
         }
     });
 });
-
-
 let id;
+
 galleryRemote.addEventListener('click', e => {
     const currentDot = dots[currentProgress]
     const targetDot = e.target
@@ -128,11 +130,10 @@ galleryRemote.addEventListener('click', e => {
         }
     }
 });
-
-
 const playIcon = document.querySelector('.play-icon');
 const pauseIcon = document.querySelector('.pause-icon');
 const replayIcon = document.querySelector('.replay-icon');
+
 galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
     if (id !== 0) {
         clearInterval(id);
@@ -160,64 +161,26 @@ galleryRemoteOuter.lastElementChild.addEventListener('click', () => {
         pauseIcon.classList.add('block');
     }
 });
+document.addEventListener("scroll", () => {
+    if (window.scrollY >= galleryRemoteOffset) {
+        remoteObserver.observe(galleryRemoteOuter);
+    }
+});
+// галерея и управление ей
+
 
 window.addEventListener('resize', () => {
     updateGallerySize();
-    mapOffset = mapAnimation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
     animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
     if (document.documentElement.clientWidth >= 768) {
         document.getElementById("mapAnimationText").style.top = "0";
     }
 });
-
-
-
-
-
-function playVideo(videoElem) {
-    try {
-        videoElem.play();
-    } catch (error) {
-        console.error("Error playing video:", error);
-    }
-}
-
-const mapAnimation = document.getElementById('mapAnimation')
-function playMapAnimation() {
-    try {
-        mapAnimation.play();
-        if (document.documentElement.clientWidth < 768) {
-            document.getElementById('mapAnimationText').style.top = "15lvh";
-        }
-    } catch (error) {
-        console.error("Error playing video:", error);
-    }
-}
-
-
-const animation = document.querySelector('.animation')
+const animation = document.getElementById('animation')
 let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-let isAnimationPlayed = false;
-let isMapAnimationPlayed = false;
-let mapOffset = mapAnimation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-document.addEventListener("scroll", () => {
-    if (window.scrollY >= galleryRemoteOffset) {
-        remoteObserver.observe(galleryRemoteOuter);
-    }
+//глупенькая функция, желательно переписать
 
-    if (window.scrollY >= animationOffset && !isAnimationPlayed) {
-        isAnimationPlayed = true;
-        playVideo(animation);
-    }
 
-    if (window.scrollY >= mapOffset && !isMapAnimationPlayed) {
-        isMapAnimationPlayed = true;
-        setTimeout(async () => {
-            await playMapAnimation(); // Воспроизводим видео mapAnimation
-            // Не сбрасываем isMapAnimationPlayed, чтобы видео не повторялось
-        }, 500);
-    }
-});
 
 const muteButton = document.getElementById('muteButton');
 function toggleMute() {
@@ -249,6 +212,7 @@ function videoEnded() {
     // Show restart button
     restartButton.classList.remove('hidden');
 }
+
 animation.addEventListener('ended', videoEnded);
 animation.volume = 0.4;
 
@@ -270,5 +234,36 @@ function restartVideo() {
     button.classList.add('hidden');
 }
 document.getElementById("restartButton").addEventListener('click', restartVideo);
+// все для большой анимации
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const lazyVideos = document.querySelectorAll("video.lazy-video");
+    const loadAndPlayVideo = (video) => {
+        video.load();
+
+        // Once it's ready, autoplay
+        video.oncanplay = () => {
+            video.play();
+            if (document.documentElement.clientWidth < 768) {
+                document.getElementById('mapAnimationText').style.top = "15lvh";
+            }
+        };
+
+        video.classList.remove("lazy-video");
+    };
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadAndPlayVideo(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.8 // play only when 80% visible
+    });
+
+    lazyVideos.forEach(video => observer.observe(video));
+});
+// анимация карты

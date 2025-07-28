@@ -180,7 +180,16 @@
           </a>
         </div>
         <div class="relative w-full aspect-[16/9] animated fade-in">
-          <video muted playsinline type="video/mp4" src="/s2animation.mp4" id="animation" class="animation w-full h-full rounded-2xl drop-shadow-2xl"></video>
+          <video
+                  id="animation"
+                  class="w-full h-full rounded-2xl drop-shadow-2xl lazy-video"
+                  muted
+                  playsinline
+                  poster="/animationPoster.png"
+                  type="video/mp4"
+                  src="/animation.mp4"
+          >
+          </video>
 
           <!-- Video overlay (for dim effect) -->
           <div class="absolute inset-0 bg-black bg-opacity-0 pointer-events-none transition-opacity duration-300 rounded-2xl" id="videoOverlay"></div>
@@ -216,7 +225,17 @@
             </a>
           </div>
         </div>
-        <video id="mapAnimation" style="clip-path: inset(0.5px round 0px);" muted playsinline type="video/webm" src="/map.mp4" class="bg-white mx-auto max-h-[60lvh] md:w-1/3 aspect-[9/16] relative grayscale-0 animated fade-in">
+        <video
+          id="mapAnimation"
+          class="lazy-video bg-white mx-auto max-h-[60lvh] md:w-1/3 aspect-[9/16] relative animated fade-in"
+          style="clip-path: inset(0.5px round 0px);"
+          preload="none"
+          muted
+          playsinline
+          type="video/webm"
+          poster="/mapPoster.png"
+          src="/map.mp4"
+        > Ваш браузер не поддерживает этот видеофайл.
         </video>
       </div>
 
@@ -229,6 +248,7 @@
                   src="/macbook.png"
                   alt="image of a MacBook with a mockup of the site"
                   style="background: transparent;"
+                  loading="lazy"
           >
 
           <!-- Card 2 -->
@@ -237,6 +257,7 @@
                   src="/ipad.png"
                   alt="image of an iPad with a mockup of the site"
                   style="background: transparent;"
+                  loading="lazy"
           >
 
           <!-- Card 3) -->
@@ -245,6 +266,7 @@
                   src="/iphone.png"
                   alt="image of an iPhone with a mockup of the site"
                   style="background: transparent;"
+                  loading="lazy"
           >
         </div>
       </div>
@@ -258,7 +280,7 @@
 
       <footer class="bg-base-200 p-10 text-base-content footer">
         <aside>
-          <img src="/logo_bottom.png" alt="grayscale logo" class="w-[50px] h-[50px]">
+          <img src="/logo_bottom.png" alt="grayscale logo" loading="lazy" class="w-[50px] h-[50px]">
           <p>Делаемсделки.рф<br/>Копирайт 2020-2025 <br/>Все права защищены</p>
         </aside>
         <nav>
