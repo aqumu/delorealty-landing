@@ -56,6 +56,7 @@ function updateGallerySize() {
             el.style.marginRight = (clientWidth - containerWidth) / 2 + 'px';
         });
         translationOffset = clientWidth;
+        document.getElementById("mapAnimationText").style.top = "0";
     } else {
         document.querySelectorAll('.gallery').forEach((el) => {
             el.style.width = clientWidth + 'px';
@@ -63,11 +64,13 @@ function updateGallerySize() {
             el.style.marginRight = '0px';
         })
         translationOffset = clientWidth;
+        document.getElementById("mapAnimationText").style.top = "0";
     }
     let currentDot = dots[currentProgress];
     galleryOuter.style.transform = 'translateX(' + (currentDot.dataset.id * translationOffset * -1) + 'px)'
 }
-updateGallerySize();
+
+window.addEventListener('resize', () => { updateGallerySize(); });
 
 function moveProgress(Bar) {
     if (Bar.value < 100) {
@@ -169,19 +172,6 @@ document.addEventListener("scroll", () => {
 // галерея и управление ей
 
 
-window.addEventListener('resize', () => {
-    updateGallerySize();
-    animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-    if (document.documentElement.clientWidth >= 768) {
-        document.getElementById("mapAnimationText").style.top = "0";
-    }
-});
-const animation = document.getElementById('animation')
-let animationOffset = animation.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
-//глупенькая функция, желательно переписать
-
-
-
 const muteButton = document.getElementById('muteButton');
 function toggleMute() {
     const button = muteButton;
@@ -213,6 +203,7 @@ function videoEnded() {
     restartButton.classList.remove('hidden');
 }
 
+const animation = document.getElementById("animation");
 animation.addEventListener('ended', videoEnded);
 animation.volume = 0.4;
 
@@ -234,25 +225,80 @@ function restartVideo() {
     button.classList.add('hidden');
 }
 document.getElementById("restartButton").addEventListener('click', restartVideo);
+
+
+function trackVideoBuffer(video, onUpdate) {
+    let lastBufferedEnd = 0;
+
+    const updateBufferInfo = () => {
+        if (!video.duration || isNaN(video.duration)) return;
+
+        const buffered = video.buffered;
+        let totalBuffered = 0;
+        let latestBufferedEnd = 0;
+
+        for (let i = 0; i < buffered.length; i++) {
+            const start = buffered.start(i);
+            const end = buffered.end(i);
+            totalBuffered += end - start;
+            if (end > latestBufferedEnd) {
+                latestBufferedEnd = end;
+            }
+        }
+
+        const percent = (totalBuffered / video.duration) * 100;
+
+        if (latestBufferedEnd > lastBufferedEnd) {
+            lastBufferedEnd = latestBufferedEnd;
+            if (typeof onUpdate === "function") {
+                onUpdate(percent, totalBuffered, video.duration);
+            }
+        }
+
+        if (latestBufferedEnd >= video.duration) {
+            clearInterval(interval);
+        }
+    };
+
+    const interval = setInterval(updateBufferInfo, 500);
+}
+
+const circle = document.getElementById("buffer-circle");
+const wrapper = document.getElementById("buffer-wrapper");
+
+const radius = 40;
+const circumference = 2 * Math.PI * radius;
+const minVisiblePercent = 2; // always show at least 2% of the arc
+
+trackVideoBuffer(animation, (percent) => {
+    const clampedPercent = Math.max(percent, minVisiblePercent);
+    circle.style.strokeDashoffset = circumference - (clampedPercent / 100) * circumference;
+
+    if (percent >= 99) {
+        wrapper.classList.add("!opacity-0");
+    } else {
+        wrapper.classList.remove("!opacity-0");
+    }
+});
 // все для большой анимации
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const lazyVideos = document.querySelectorAll("video.lazy-video");
-    const loadAndPlayVideo = (video) => {
-        video.load();
+function loadAndPlayVideo(video) {
+    video.load();
 
-        // Once it's ready, autoplay
-        video.oncanplay = () => {
-            video.play();
-            if (document.documentElement.clientWidth < 768) {
-                document.getElementById('mapAnimationText').style.top = "15lvh";
-            }
-        };
-
-        video.classList.remove("lazy-video");
+    // Once it's ready, autoplay
+    video.oncanplay = () => {
+        video.play();
+        if (document.documentElement.clientWidth < 768 && video.id === 'mapAnimation') {
+            document.getElementById('mapAnimationText').style.top = "15lvh";
+        }
     };
+    video.classList.remove("lazy-video");
+}
 
+document.addEventListener("DOMContentLoaded", function () {
+    updateGallerySize();
+    const lazyVideos = document.querySelectorAll("video.lazy-video");
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

@@ -25,6 +25,9 @@ module.exports = {
           fontFamily: {
             'roboto': ['Roboto', 'sans-serif']
           },
+          animation: {
+            'spin-slow': 'spin 1s linear infinite',
+          },
         },
     container: {
       center: true,

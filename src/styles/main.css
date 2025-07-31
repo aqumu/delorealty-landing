@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/*@font-face {*/
+/*  font-family: 'Wix Madefor Display';*/
+/*  src: url('/public/fonts/WixMadeforDisplay.ttf') format('ttf');*/
+/*}*/
+/*@font-face {*/
+/*  font-family: 'Roboto';*/
+/*  src: url('/public/fonts/Roboto.ttf') format('ttf');*/
+/*}*/
+/*@font-face {*/
+/*  font-family: 'Helvetica';*/
+/*  src: url('/public/fonts/Helvetica.ttf') format('ttf');*/
+/*}*/
+/*@font-face {*/
+/*  font-family: 'HelveticaNeue';*/
+/*  src: url('/public/fonts/HelveticaNeue.otf') format('otf');*/
+/*}*/
+/*@font-face {*/
+/*  font-family: 'Arial';*/
+/*  src: url('/public/fonts/Arial.ttf') format('ttf');*/
+/*}*/
+
 :root {
   font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 400;
@@ -14,6 +35,11 @@
 
   --red: #ff5800;
   --yellow: #fca700;
+}
+
+.navbar {
+  font-family: Roboto,-apple-system,sans-serif;
+  font-weight: 400;
 }
 
 .nav {
@@ -49,14 +75,26 @@
   transform-origin: bottom left;
 }
 
+.fancy-underline-red:after {
+  /*background: #e84c05;*/
+  height: 1px;
+  background: #ff5800;
+}
+
+.glassy-button-green {
+  &::after {
+    background-color: #68cc49 !important;
+  }
+}
+
 .glassy-button {
   --_x-motion: 0;
   --_y-motion: 0;
   --_motion-factor: 0.1;
 
+  font-weight: 630;
   cursor: pointer;
   color: #ffffff;
-  font-weight: bold;
   padding: 0;
   border: 0;
   border-radius: 1rem;
