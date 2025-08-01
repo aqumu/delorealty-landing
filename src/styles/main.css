@@ -325,6 +325,23 @@ progress {
   padding-left: 1rem/* 16px */;
 }
 
+.phone-symbol {
+  display: none;
+}
+
+@media (min-width: 400px) {
+  .phone-symbol {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 500px) {
+  .xs\:text-md {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 @media (min-width: 640px) {
   .myContainer {
     max-width: 600px;
