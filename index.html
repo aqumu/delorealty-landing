@@ -75,7 +75,9 @@
       <div class="bg-base-100 h-[94px] navbar nav px-0">
         <div class="myContainer">
           <div class="grid grid-cols-11 w-full">
-            <img alt="logo" src="/logo.png" class="max-h-full my-auto col-span-3"/>
+            <a href="/main/#/search/notice" class="max-h-full my-auto col-span-3">
+              <img alt="logo" src="/logo.png" class=" my-auto h-full"/>
+            </a>
             <div class="flex flex-col col-span-5 text-center">
               <span class="text-sm xs:text-md sm:text-lg md:text-xl lg:text-2xl leading-5 font-bold">Мультилистинговая система<br/></span>
               <span class="text-sm xs:text-md md:text-lg lg:text-xl mx-auto">Южного региона</span>
@@ -206,37 +208,37 @@
 
           <div class="absolute bottom-4 right-4 h-[44px] flex gap-3">
             <!-- Buffer bar-->
-            <div class="!opacity-0"></div>
-            <div id="buffer-wrapper" class="relative h-[44px] w-[44px] rounded-full bg-black bg-opacity-70 transition-opacity duration-300 opacity-100">
-              <!-- Rotating container -->
-              <div id="rotating-circle" class="absolute inset-2 animate-spin-slow">
-                <svg class="w-full h-full transform" viewBox="0 0 100 100">
-                  <!-- Background ring -->
-                  <circle
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          stroke="#4c4c4c"
-                          stroke-width="14"
-                          fill="none"
-                  />
-                  <!-- Foreground rotating progress ring -->
-                  <circle
-                          id="buffer-circle"
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          stroke="#ffffff"
-                          stroke-width="14"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-dasharray="251.2"
-                          stroke-dashoffset="251.2"
-                          class="transform origin-center animate-spin-slow transition-[stroke-dashoffset] duration-300 ease-out"
-                  />
-                </svg>
-              </div>
-            </div>
+<!--            <div class="!opacity-0"></div>-->
+<!--            <div id="buffer-wrapper" class="relative h-[44px] w-[44px] rounded-full bg-black bg-opacity-70 transition-opacity duration-300 opacity-100">-->
+<!--              &lt;!&ndash; Rotating container &ndash;&gt;-->
+<!--              <div id="rotating-circle" class="absolute inset-2 animate-spin-slow">-->
+<!--                <svg class="w-full h-full transform" viewBox="0 0 100 100">-->
+<!--                  &lt;!&ndash; Background ring &ndash;&gt;-->
+<!--                  <circle-->
+<!--                          cx="50"-->
+<!--                          cy="50"-->
+<!--                          r="40"-->
+<!--                          stroke="#4c4c4c"-->
+<!--                          stroke-width="14"-->
+<!--                          fill="none"-->
+<!--                  />-->
+<!--                  &lt;!&ndash; Foreground rotating progress ring &ndash;&gt;-->
+<!--                  <circle-->
+<!--                          id="buffer-circle"-->
+<!--                          cx="50"-->
+<!--                          cy="50"-->
+<!--                          r="40"-->
+<!--                          stroke="#ffffff"-->
+<!--                          stroke-width="14"-->
+<!--                          fill="none"-->
+<!--                          stroke-linecap="round"-->
+<!--                          stroke-dasharray="251.2"-->
+<!--                          stroke-dashoffset="251.2"-->
+<!--                          class="transform origin-center animate-spin-slow transition-[stroke-dashoffset] duration-300 ease-out"-->
+<!--                  />-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--            </div>-->
             <!-- Restart button (hidden by default) -->
             <button id="restartButton" class="hidden h-[44px] w-[44px] transform bg-black bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all">
               <svg class="replay-icon" viewBox="0 0 56 56" width="44" height="44">

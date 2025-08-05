@@ -227,59 +227,59 @@ function restartVideo() {
 document.getElementById("restartButton").addEventListener('click', restartVideo);
 
 
-function trackVideoBuffer(video, onUpdate) {
-    let lastBufferedEnd = 0;
+// function trackVideoBuffer(video, onUpdate) {
+//     let lastBufferedEnd = 0;
+//
+//     const updateBufferInfo = () => {
+//         if (!video.duration || isNaN(video.duration)) return;
+//
+//         const buffered = video.buffered;
+//         let totalBuffered = 0;
+//         let latestBufferedEnd = 0;
+//
+//         for (let i = 0; i < buffered.length; i++) {
+//             const start = buffered.start(i);
+//             const end = buffered.end(i);
+//             totalBuffered += end - start;
+//             if (end > latestBufferedEnd) {
+//                 latestBufferedEnd = end;
+//             }
+//         }
+//
+//         const percent = (totalBuffered / video.duration) * 100;
+//
+//         if (latestBufferedEnd > lastBufferedEnd) {
+//             lastBufferedEnd = latestBufferedEnd;
+//             if (typeof onUpdate === "function") {
+//                 onUpdate(percent, totalBuffered, video.duration);
+//             }
+//         }
+//
+//         if (latestBufferedEnd >= video.duration) {
+//             clearInterval(interval);
+//         }
+//     };
+//
+//     const interval = setInterval(updateBufferInfo, 500);
+// }
 
-    const updateBufferInfo = () => {
-        if (!video.duration || isNaN(video.duration)) return;
-
-        const buffered = video.buffered;
-        let totalBuffered = 0;
-        let latestBufferedEnd = 0;
-
-        for (let i = 0; i < buffered.length; i++) {
-            const start = buffered.start(i);
-            const end = buffered.end(i);
-            totalBuffered += end - start;
-            if (end > latestBufferedEnd) {
-                latestBufferedEnd = end;
-            }
-        }
-
-        const percent = (totalBuffered / video.duration) * 100;
-
-        if (latestBufferedEnd > lastBufferedEnd) {
-            lastBufferedEnd = latestBufferedEnd;
-            if (typeof onUpdate === "function") {
-                onUpdate(percent, totalBuffered, video.duration);
-            }
-        }
-
-        if (latestBufferedEnd >= video.duration) {
-            clearInterval(interval);
-        }
-    };
-
-    const interval = setInterval(updateBufferInfo, 500);
-}
-
-const circle = document.getElementById("buffer-circle");
-const wrapper = document.getElementById("buffer-wrapper");
-
-const radius = 40;
-const circumference = 2 * Math.PI * radius;
-const minVisiblePercent = 2; // always show at least 2% of the arc
-
-trackVideoBuffer(animation, (percent) => {
-    const clampedPercent = Math.max(percent, minVisiblePercent);
-    circle.style.strokeDashoffset = circumference - (clampedPercent / 100) * circumference;
-
-    if (percent >= 99) {
-        wrapper.classList.add("!opacity-0");
-    } else {
-        wrapper.classList.remove("!opacity-0");
-    }
-});
+// const circle = document.getElementById("buffer-circle");
+// const wrapper = document.getElementById("buffer-wrapper");
+//
+// const radius = 40;
+// const circumference = 2 * Math.PI * radius;
+// const minVisiblePercent = 2; // always show at least 2% of the arc
+//
+// trackVideoBuffer(animation, (percent) => {
+//     const clampedPercent = Math.max(percent, minVisiblePercent);
+//     circle.style.strokeDashoffset = circumference - (clampedPercent / 100) * circumference;
+//
+//     if (percent >= 99) {
+//         wrapper.classList.add("!opacity-0");
+//     } else {
+//         wrapper.classList.remove("!opacity-0");
+//     }
+// });
 // все для большой анимации
 
 
