@@ -2,27 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*@font-face {*/
-/*  font-family: 'Wix Madefor Display';*/
-/*  src: url('/public/fonts/WixMadeforDisplay.ttf') format('ttf');*/
-/*}*/
-/*@font-face {*/
-/*  font-family: 'Roboto';*/
-/*  src: url('/public/fonts/Roboto.ttf') format('ttf');*/
-/*}*/
-/*@font-face {*/
-/*  font-family: 'Helvetica';*/
-/*  src: url('/public/fonts/Helvetica.ttf') format('ttf');*/
-/*}*/
-/*@font-face {*/
-/*  font-family: 'HelveticaNeue';*/
-/*  src: url('/public/fonts/HelveticaNeue.otf') format('otf');*/
-/*}*/
-/*@font-face {*/
-/*  font-family: 'Arial';*/
-/*  src: url('/public/fonts/Arial.ttf') format('ttf');*/
-/*}*/
-
 :root {
   font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 400;
@@ -79,124 +58,6 @@
   /*background: #e84c05;*/
   height: 1px;
   background: #ff5800;
-}
-
-.glassy-button-green {
-  &::after {
-    background-color: #68cc49 !important;
-  }
-}
-
-.glassy-button {
-  --_x-motion: 0;
-  --_y-motion: 0;
-  --_motion-factor: 0.1;
-
-  font-weight: 630;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 0;
-  border: 0;
-  border-radius: 1rem;
-  background-color: transparent;
-  position: relative;
-  outline: 0;
-  transform: translate(0, 0);
-
-  span {
-    padding: 1rem 1.5rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    border-radius: inherit;
-    background-color: hsl(0 0% 100% / .0);
-    backdrop-filter: blur(0px);
-    transition:
-      scale 200ms,
-      translate 200ms,
-      background-color 200ms,
-      backdrop-filter 200ms;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 171 171' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.74' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      opacity: 0;
-      transition: opacity 200ms;
-    }
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    border-radius: inherit;
-    background-color: var(--red);
-    transition:
-          scale 200ms,
-          translate 200ms;
-  }
-
-  &:hover,
-  &:focus-visible {
-    span {
-      translate: 0 -0.5rem;
-      background-color: hsl(0 0% 0% / .05);
-      backdrop-filter: blur(5px);
-      outline: 1px solid hsl(0 0% 0% / .2);
-
-      &::before {
-        opacity: 0.3;
-      }
-    }
-
-    &::after {
-      translate: 0 .125rem;
-      scale: 0.95;
-      animation: enter forwards 200ms;
-    }
-  }
-
-  &:active {
-    span {
-      translate: 0 -0.25rem;
-      background-color: hsl(0 0% 100% / .15);
-      backdrop-filter: blur(10px);
-    }
-
-    &::after {
-      translate: 0 .25rem;
-      scale: 0.875;
-    }
-  }
-}
-
-@keyframes enter {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(
-            calc(var(--_x-motion) * var(--_motion-factor) * -1),
-            calc(var(--_y-motion) * var(--_motion-factor) * -1)
-    );
-  }
-}
-
-@keyframes exit {
-  from {
-    transform: translate(
-            calc(var(--_x-motion) * var(--_motion-factor) * -1),
-            calc(var(--_y-motion) * var(--_motion-factor) * -1)
-    );
-  }
-  to {
-    transform: translate(0, 0);
-  }
 }
 
 .gallery {
@@ -380,4 +241,122 @@ progress {
 }
 .group-hover\:pause-scroll:hover {
   animation-play-state: paused;
+}
+
+.glassy-button-green {
+  &::after {
+    background-color: #68cc49 !important;
+  }
+}
+
+.glassy-button {
+  --_x-motion: 0;
+  --_y-motion: 0;
+  --_motion-factor: 0.1;
+
+  font-weight: 630;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  background-color: transparent;
+  position: relative;
+  outline: 0;
+  transform: translate(0, 0);
+
+  span {
+    padding: 1rem 1.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-radius: inherit;
+    background-color: hsl(0 0% 100% / .0);
+    backdrop-filter: blur(0px);
+    transition:
+            scale 200ms,
+            translate 200ms,
+            background-color 200ms,
+            backdrop-filter 200ms;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 171 171' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.74' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--red);
+    transition:
+            scale 200ms,
+            translate 200ms;
+  }
+
+  &:hover,
+  &:focus-visible {
+    span {
+      translate: 0 -0.5rem;
+      background-color: hsl(0 0% 0% / .05);
+      backdrop-filter: blur(5px);
+      outline: 1px solid hsl(0 0% 0% / .2);
+
+      &::before {
+        opacity: 0.3;
+      }
+    }
+
+    &::after {
+      translate: 0 .125rem;
+      scale: 0.95;
+      animation: enter forwards 200ms;
+    }
+  }
+
+  &:active {
+    span {
+      translate: 0 -0.25rem;
+      background-color: hsl(0 0% 100% / .15);
+      backdrop-filter: blur(10px);
+    }
+
+    &::after {
+      translate: 0 .25rem;
+      scale: 0.875;
+    }
+  }
+}
+
+@keyframes enter {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(
+            calc(var(--_x-motion) * var(--_motion-factor) * -1),
+            calc(var(--_y-motion) * var(--_motion-factor) * -1)
+    );
+  }
+}
+
+@keyframes exit {
+  from {
+    transform: translate(
+            calc(var(--_x-motion) * var(--_motion-factor) * -1),
+            calc(var(--_y-motion) * var(--_motion-factor) * -1)
+    );
+  }
+  to {
+    transform: translate(0, 0);
+  }
 }
