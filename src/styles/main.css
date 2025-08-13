@@ -236,11 +236,15 @@ progress {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 .animate-scroll {
   animation: scroll 120s linear infinite;
 }
-.group-hover\:pause-scroll:hover {
-  animation-play-state: paused;
+
+@media (min-width: 640px) {
+  .group-hover\:pause-scroll:hover {
+    animation-play-state: paused;
+  }
 }
 
 .glassy-button-green {
@@ -248,6 +252,118 @@ progress {
     background-color: #68cc49 !important;
   }
 }
+
+/*.glassy-button {*/
+/*  --_x-motion: 0;*/
+/*  --_y-motion: 0;*/
+/*  --_motion-factor: 0.1;*/
+
+/*  font-weight: 630;*/
+/*  cursor: pointer;*/
+/*  color: #ffffff;*/
+/*  padding: 0;*/
+/*  border: 0;*/
+/*  border-radius: 1rem;*/
+/*  background-color: transparent;*/
+/*  position: relative;*/
+/*  outline: 0;*/
+/*  transform: translate(0, 0);*/
+
+/*  &::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    z-index: -1;*/
+/*    inset: 0;*/
+/*    border-radius: inherit;*/
+/*    background-color: var(--red);*/
+/*    transition:*/
+/*            scale 200ms,*/
+/*            translate 200ms;*/
+/*  }*/
+
+/*  &:hover,*/
+/*  &:focus-visible {*/
+/*    span {*/
+/*      translate: 0 -0.5rem;*/
+/*      background-color: hsl(0 0% 0% / .05);*/
+/*      backdrop-filter: blur(5px);*/
+/*      outline: 1px solid hsl(0 0% 0% / .2);*/
+
+/*      &::before {*/
+/*        opacity: 0.3;*/
+/*      }*/
+/*    }*/
+
+/*    &::after {*/
+/*      translate: 0 .125rem;*/
+/*      scale: 0.95;*/
+/*      animation: enter forwards 200ms;*/
+/*    }*/
+/*  }*/
+
+/*  &:active {*/
+/*    span {*/
+/*      translate: 0 -0.25rem;*/
+/*      background-color: hsl(0 0% 100% / .15);*/
+/*      backdrop-filter: blur(10px);*/
+/*    }*/
+
+/*    &::after {*/
+/*      translate: 0 .25rem;*/
+/*      scale: 0.875;*/
+/*    }*/
+/*  }*/
+/*}*/
+
+/*.glassy-button span {*/
+/*  padding: 1rem 1.5rem;*/
+/*  overflow: hidden;*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: nowrap;*/
+/*  border-radius: inherit;*/
+/*  background-color: hsl(0 0% 100% / .0);*/
+/*  backdrop-filter: blur(0px);*/
+/*  transition:*/
+/*          scale 200ms,*/
+/*          translate 200ms,*/
+/*          background-color 200ms,*/
+/*          backdrop-filter 200ms;*/
+
+/*  &::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    inset: 0;*/
+/*    z-index: -1;*/
+/*    background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 171 171' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.74' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");*/
+/*    opacity: 0;*/
+/*    transition: opacity 200ms;*/
+/*  }*/
+/*}*/
+
+/*@keyframes enter {*/
+/*  from {*/
+/*    transform: translate(0, 0);*/
+/*  }*/
+/*  to {*/
+/*    transform: translate(*/
+/*            calc(var(--_x-motion) * var(--_motion-factor) * -1),*/
+/*            calc(var(--_y-motion) * var(--_motion-factor) * -1)*/
+/*    );*/
+/*  }*/
+/*}*/
+
+/*@keyframes exit {*/
+/*  from {*/
+/*    transform: translate(*/
+/*            calc(var(--_x-motion) * var(--_motion-factor) * -1),*/
+/*            calc(var(--_y-motion) * var(--_motion-factor) * -1)*/
+/*    );*/
+/*  }*/
+/*  to {*/
+/*    transform: translate(0, 0);*/
+/*  }*/
+/*}*/
 
 .glassy-button {
   --_x-motion: 0;
@@ -264,77 +380,70 @@ progress {
   position: relative;
   outline: 0;
   transform: translate(0, 0);
+}
 
-  span {
-    padding: 1rem 1.5rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    border-radius: inherit;
-    background-color: hsl(0 0% 100% / .0);
-    backdrop-filter: blur(0px);
-    transition:
-            scale 200ms,
-            translate 200ms,
-            background-color 200ms,
-            backdrop-filter 200ms;
+.glassy-button::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--red);
+  transition: scale 200ms, translate 200ms;
+}
 
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 171 171' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.74' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      opacity: 0;
-      transition: opacity 200ms;
-    }
-  }
+.glassy-button:hover span,
+.glassy-button:focus-visible span {
+  translate: 0 -0.5rem;
+  background-color: hsla(0, 0%, 0%, 0.05); /* changed to hsla for old browser support */
+  backdrop-filter: blur(5px);
+  outline: 1px solid hsla(0, 0%, 0%, 0.2);
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    border-radius: inherit;
-    background-color: var(--red);
-    transition:
-            scale 200ms,
-            translate 200ms;
-  }
+.glassy-button:hover span::before,
+.glassy-button:focus-visible span::before {
+  opacity: 0.3;
+}
 
-  &:hover,
-  &:focus-visible {
-    span {
-      translate: 0 -0.5rem;
-      background-color: hsl(0 0% 0% / .05);
-      backdrop-filter: blur(5px);
-      outline: 1px solid hsl(0 0% 0% / .2);
+.glassy-button:hover::after,
+.glassy-button:focus-visible::after {
+  translate: 0 0.125rem;
+  scale: 0.95;
+  animation: enter forwards 200ms;
+}
 
-      &::before {
-        opacity: 0.3;
-      }
-    }
+.glassy-button:active span {
+  translate: 0 -0.25rem;
+  background-color: hsla(0, 0%, 100%, 0.15);
+  backdrop-filter: blur(10px);
+}
 
-    &::after {
-      translate: 0 .125rem;
-      scale: 0.95;
-      animation: enter forwards 200ms;
-    }
-  }
+.glassy-button:active::after {
+  translate: 0 0.25rem;
+  scale: 0.875;
+}
 
-  &:active {
-    span {
-      translate: 0 -0.25rem;
-      background-color: hsl(0 0% 100% / .15);
-      backdrop-filter: blur(10px);
-    }
+.glassy-button span {
+  padding: 1rem 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-radius: inherit;
+  background-color: hsla(0, 0%, 100%, 0);
+  backdrop-filter: blur(0px);
+  transition: scale 200ms, translate 200ms, background-color 200ms, backdrop-filter 200ms;
+  position: relative; /* needed for ::before */
+}
 
-    &::after {
-      translate: 0 .25rem;
-      scale: 0.875;
-    }
-  }
+.glassy-button span::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 171 171' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.74' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0;
+  transition: opacity 200ms;
 }
 
 @keyframes enter {

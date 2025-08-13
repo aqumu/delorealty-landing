@@ -9,4 +9,5 @@ export default defineConfig({
         postcss(tailwindcss)
     ],
     base: '/delorealty-landing/'
+
 });
